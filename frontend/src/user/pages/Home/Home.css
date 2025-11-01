@@ -1,0 +1,350 @@
+:root{
+  --video-poster: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1600&auto=format&fit=crop');
+  --cta-image: url('https://images.unsplash.com/photo-1612178537257-4a7a3f2ee5ea?q=80&w=2000&auto=format&fit=crop');
+
+  --bg: #073c3f;            /* nền xanh đậm của trang */
+  --surface: #0c4a4f;       /* bề mặt tối */
+  --text: #e9f5f3;          /* chữ sáng */
+  --muted: #b9d5d1;         /* chữ phụ */
+  --accent: #e6ff5f;        /* nút vàng xanh */
+  --primary: #d2ff40;       /* primary mềm */
+  --brand: #132a2b;
+
+  --card-adult: #d46323;
+  --card-kid: #8dd9d1;
+  --card-student: #e699c5;
+
+  --radius: 20px;
+}
+
+/* ========= Resets & Layout ========= */
+*{box-sizing:border-box}
+html,body,#root{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif;
+  color: var(--text);
+  background:#043739;
+}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{width:min(1180px, 100% - 32px); margin-inline:auto}
+/* ========= Topbar ========= */
+.topbar{
+  background:#022f31;
+  color:var(--muted);
+  font-size:13px;
+  border-bottom:1px solid #0f4c50;
+}
+.topbar__inner{display:flex; gap:12px; align-items:center; padding:.5rem 0}
+.dot{width:6px;height:6px;border-radius:999px;background:#2aa1a7;display:inline-block}
+
+/* ========= Navbar ========= */
+.navbar{
+  position:sticky; top:0; z-index:50;
+  background:#f3f7f5;
+  color:#0d1b1c;
+  border-bottom:1px solid #e5eef0;
+}
+.nav__inner{display:flex; align-items:center; gap:24px; padding:14px 0}
+.logo{display:grid; place-items:center; width:88px; height:44px; color:#0d1b1c; font-weight:800; background:#e7fff1; border-radius:12px; text-transform:uppercase}
+.logo span:first-child{font-size:18px; line-height:1}
+.logo span:last-child{font-size:14px; line-height:1}
+
+.nav__links{display:flex; gap:20px; margin-left:auto}
+.nav__links a{padding:8px 10px; border-radius:10px}
+.nav__links a:hover{background:#e9f5f3}
+
+.nav__actions{display:flex; gap:10px}
+.btn{border:0; cursor:pointer; border-radius:12px; padding:10px 16px; font-weight:700}
+.btn-text{background:transparent}
+.btn-primary{background:#e7ff54; color:#0d1b1c}
+.btn-primary:hover{filter:brightness(.95)}
+.nav__toggle{display:none; background:transparent; border:0; margin-left:8px}
+.nav__toggle span{display:block; width:20px; height:2px; background:#1a2a2b; margin:4px 0; border-radius:2px}
+
+/* ========= Hero ========= */
+.hero{
+  min-height:90vh;
+  background-image: 
+    var(--hero-image);
+  background-size:cover;
+  background-position:center 10%;
+  position:relative;
+  isolation:isolate;
+  
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(180deg, 
+      rgba(4, 55, 57, .25) 0%,  /* 0% (Trên cùng): Mờ 25% */
+      #04373966 60%,  /* 50% (Giữa): Mờ 40% */
+      #043638 90%,  /* 90%: Đạt 100% (ĐẶC) */
+      #043638 100% /* 100% (Đáy): Vẫn giữ 100% (ĐẶC) */
+  );
+  
+  z-index: -1;
+}
+.hero__content{
+  position:relative; z-index:1;
+  padding:320px 0 80px;
+  text-align:center;
+}
+.hero__title{
+  font-family: 'Momo';
+  font-size: clamp(28px, 6vw, 64px);
+  line-height:1.1;
+  font-weight:900;
+  letter-spacing:1px;
+  margin-bottom: 0px;
+  text-shadow: 0 2px 20px rgba(0,0,0,.4);
+}
+.hero__subtitle{
+  font-family: 'Momo';
+  margin-top:10px;
+  color:#cff3ef;
+  font-size:clamp(16px, 2vw, 22px);
+}
+.hero__ctas{
+  margin-top:28px;
+  display:flex; justify-content:center; gap:14px; flex-wrap:wrap;
+}
+.zoo-home__cta-row{
+  margin-top: 24px;
+  display:flex; gap:18px; flex-wrap:wrap; justify-content:center;
+}
+.zoo-home__btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-weight: 900;
+  letter-spacing:.2px;
+  text-decoration:none;
+  transition: transform .15s ease, box-shadow .15s ease, filter .15s ease;
+  user-select: none;
+}
+.zoo-home__btn--primary{
+  background:#e7ff54;               /* vàng tươi */
+  color:#0b1a1b;
+  box-shadow:
+    0 14px 28px rgba(0,0,0,.25),     /* bóng ngoài */
+    inset 0 -3px 0 rgba(0,0,0,.22);  /* bóng viền dưới cho cảm giác nổi */
+}
+.zoo-home__btn--primary:hover{ transform: translateY(-1px); filter: brightness(.98); }
+.zoo-home__btn--primary:active{ transform: translateY(0); box-shadow: 0 8px 18px rgba(0,0,0,.25), inset 0 -2px 0 rgba(0,0,0,.22); }
+
+/* ===== LAYER CHIM ===== */
+.zoo-hero__birds{
+  position:absolute;             /* nằm đè lên hero */
+  inset:0;                       /* phủ toàn bộ hero */
+  z-index: 0;                    /* trên overlay, dưới text */
+  pointer-events:none;           /* không chặn click */
+  overflow: visible;             /* không cắt mép */
+}
+
+/* Canh ảnh chim ở giữa, kéo xuống một chút */
+.zoo-hero__birds-img{
+  position:absolute;
+  left:50%;
+  top:70%;                       /* hạ đàn chim xuống (50–70% tuỳ ảnh) */
+  transform:translate(-50%, -50%);
+  width: 100wh;                 /* hoặc dùng 1200–1600px tuỳ khung */
+  max-width: none;               /* để không bị co bởi container */
+  opacity:.9;
+  mix-blend-mode: multiply;      /* blend nhẹ cho ăn nền */
+  /* Nếu muốn bay động, mở animation dưới: */
+  /* animation: birds-fly 30s linear infinite; */
+}
+
+/* Nội dung hero luôn ở trên chim */
+.hero .hero__content{ position:relative; z-index: 1; }
+
+/* Mobile: thu nhỏ/ẩn bớt chim để không che nội dung */
+@media (max-width: 768px){
+  .zoo-hero__birds-img{ width: 1100px; top:66%; opacity:.75; }
+}
+/* ========= Video ========= */
+.video{
+  padding:48px 0;
+  position: relative; z-index: 2;
+}
+.video .video__frame{
+  width:100%;
+  aspect-ratio: 16/9;
+  border-radius:24px;
+  background-image: var(--video-poster);
+  background-size:cover; background-position:center;
+  display:grid; place-items:center;
+  overflow:hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 0 0 8px #0b4a4f;
+}
+.video__play{
+  display:grid; place-items:center;
+  width:84px; height:84px; border-radius:999px;
+  background:#f4ff5f; color:#0d1b1c; font-weight:800; border:4px solid #cbe24a;
+  text-transform:uppercase; letter-spacing:.5px;
+}
+.video__play span{transform:translateY(1px)}
+
+/* Modal */
+.modal{position:fixed; inset:0; z-index:100}
+.modal__backdrop{position:absolute; inset:0; background:rgba(0,0,0,.6)}
+.modal__body{
+  position:absolute; inset:0; display:grid; place-items:center; padding:24px;
+}
+.modal__video{
+  width:min(1080px, 100%); border-radius:16px; background:#000;
+  outline:8px solid rgba(255,255,255,.08);
+}
+.modal__close{
+  position:absolute; top:24px; right:28px; font-size:28px;
+  width:44px; height:44px; border-radius:999px; border:0; background:#e8ffe0; color:#112; cursor:pointer;
+}
+
+/* ========= Pricing ========= */
+.pricing{padding:64px 0}
+.section__title{
+  text-align:center; 
+  font-size:clamp(22px,4vw,38px); 
+  font-family: 'Momo';
+  letter-spacing: 1px;
+  margin:0
+}
+.section__lead{color:#ccf0ea; text-align:center; margin:10px auto 28px; max-width:780px}
+
+.pricing__grid{
+  display:grid; grid-template-columns: repeat(3, 1fr); gap:20px;
+}
+.card{
+  
+  background:#10393a; border-radius:24px; overflow:hidden; display:flex; flex-direction:column; min-height:540px;
+  border:1px solid rgba(255,255,255,.06);
+}
+.card__media{
+  
+  height:210px; background:#123; background-size:cover; background-position:center;
+}
+
+.card__body{padding:18px}
+.card__body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.checklist {
+  flex-grow: 1; /* đẩy phần mô tả chiếm khoảng trống còn lại */
+}
+
+.card h3{
+  margin:6px 0 12px;
+  font-family: 'Momo';
+  letter-spacing: 1.5px;
+}
+.checklist{margin:0 0 16px 0; padding:0; list-style:none; display:grid; gap:10px}
+.checklist li{
+  padding-left:28px; position:relative; color:#e7faf7;
+}
+.checklist li::before{
+  content:""; position:absolute; left:0; top:8px;
+  width:16px; height:16px; border-radius:4px; outline:2px solid #bff4e7; background:#8fe6da;
+}
+.card__price{
+    font-family: 'Momo';
+  letter-spacing: 1px;
+  color:#fff; font-weight:900; font-size:22px; letter-spacing:.5px; margin:8px 0 12px;
+}
+.btn-block{width:100%; 
+  background:#e7ff54; 
+  color:#021; 
+  border-radius:12px; 
+  padding:12px 16px; 
+  font-weight:800;
+  font-family: 'Momo';
+  letter-spacing: 1px;
+}
+.card--adult{background: color-mix(in oklab, var(--card-adult), #0a3e41 60%)}
+.card--kid{background: color-mix(in oklab, var(--card-kid), #0a3e41 70%)}
+.card--student{background: color-mix(in oklab, var(--card-student), #0a3e41 68%)}
+
+/* ========= CTA ========= */
+.cta{padding:56px 0 92px;}
+.cta__box{
+  font-family: 'Momo';
+  letter-spacing: 1px;
+  position:relative; border-radius:28px; overflow:hidden;
+  background-image: var(--cta-image);
+  background-size:cover; background-position:center;
+  min-height:360px; display:flex; align-items:flex-end;
+}
+.cta__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+.cta__box::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.0) 0%, rgba(0,0,0,.6) 100%);
+}
+.cta__text{
+  position:relative; z-index:1; padding:28px; max-width:560px; color:#fff;
+}
+.cta__text h3{font-size:clamp(22px,4vw,44px); margin:0 0 16px}
+.footer{padding:24px 0; background:#062a2c; color:#bfe9e3; border-top:1px solid #0a4043}
+
+/* ========= Responsive ========= */
+@media (max-width: 960px){
+  .nav__links{display:none}
+  .nav__toggle{display:block}
+  .pricing__grid{grid-template-columns:1fr}
+  .card{min-height:unset}
+}
+/* === Cục “Đặt lịch tham quan …” cố định đáy màn hình === */
+.zoo-home__float-book{
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  z-index: 70;
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 12px 12px 18px;
+  background: #ffffff;
+  color: #0c1414;
+  border-radius: 999px;
+}
+.zoo-home__float-text{
+  font-weight: 700;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+.zoo-home__btn-mini{
+  display:inline-flex; align-items:center; justify-content:center;
+  height: 44px; min-width: 160px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background:#e7ff54;
+  color:#0b1a1b;
+  font-weight: 900;
+  text-decoration:none;
+  box-shadow: inset 0 -3px 0 rgba(0,0,0,.22), 0 6px 16px rgba(0,0,0,.18);
+  transition: transform .15s ease, filter .15s ease;
+}
+.zoo-home__btn-mini:hover{ transform: translateY(-1px); filter: brightness(.98); }
+.zoo-home__btn-mini:active{ transform: translateY(0); }
+
+/* Responsive cho “cục” fixed */
+@media (max-width: 680px){
+  .zoo-home__float-book{
+    left: 12px; right: 12px; transform:none;
+    padding-right: 10px;
+  }
+  .zoo-home__float-text{ white-space: normal; font-size: 14px; }
+  .zoo-home__btn-mini{ min-width: 130px; height: 40px; }
+}

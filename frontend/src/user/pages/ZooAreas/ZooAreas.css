@@ -1,0 +1,234 @@
+/* ---------------------------
+   ZLZONE – Areas Page Styles
+   (prefix: .zlzone-*)
+----------------------------*/
+:root{
+  --zl-bg:#073b3d; 
+  --zl-bg-soft:#0b4c4e;
+  --zl-ink:#eaf9f6; 
+  --zl-ink-dim:#cfe9e3;
+  --zl-accent:#ffe934; 
+  --zl-page-max:1200px;
+  --zl-r-lg:24px; 
+  --zl-r-xl:32px;
+}
+
+/* Base */
+.zlzone-page{
+  background:var(--zl-bg); color:var(--zl-ink);
+  min-height:100vh; line-height:1.5;
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+}
+
+/* ---------- Buttons ---------- */
+.zlzone-btn{
+  appearance:none;border:0;border-radius:999px;
+  padding:14px 22px;font-weight:700;cursor:pointer;
+  transition:transform .12s,box-shadow .12s,opacity .12s;
+}
+.zlzone-btn--primary{
+  background:var(--zl-accent); color:#111; width:max-content;
+  box-shadow:0 8px 24px rgba(255,233,52,.25);
+}
+.zlzone-btn--primary:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(255,233,52,.28) }
+.zlzone-btn--pill{ background:var(--zl-accent); color:#111; padding:12px 18px }
+.zlzone-btn--pill:hover{ transform:translateY(-1px) }
+
+/* ===========================
+   HERO
+=========================== */
+.zlzone-hero{ 
+    position:relative; 
+    height:120vh; 
+    overflow:hidden; 
+    margin-bottom:-200px;
+    z-index: 0;
+}
+.zlzone-hero__bg{
+  position:absolute; inset:0; background-image:var(--zooareas-image);
+  background-size:cover; background-position:center 20%; min-height:100vh; z-index:0;
+}
+.zlzone-hero__overlay{
+  position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg,rgba(4,55,57,.25) 0%, #04373966 70%, #073b3d 90%, #073b3d 100%);
+}
+.zlzone-hero__inner{
+  position:relative; z-index:2; max-width:var(--zl-page-max);
+  margin:0 auto; height:100%; padding:0 24px 250px;
+  display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:12px; text-align:center;
+}
+.zlzone-hero__title{
+  font-family: 'Momo';
+  font-size:clamp(28px, 6vw, 64px);
+  line-height:1.1; font-weight:900; letter-spacing:1px; margin-bottom:0;
+  text-shadow:0 2px 20px rgba(0,0,0,.4);
+}
+.zlzone-hero__subtitle{
+  font-family:'Momo'; margin-top:10px; color:#cff3ef; font-size:clamp(16px,2vw,22px);
+}
+
+/* ===========================
+   FEATURE (big bird)
+=========================== */
+.zlzone-feature{
+    z-index: 1;
+    max-width:var(--zl-page-max); 
+    margin:40px auto 0; 
+    background:#0a3f41;
+    border-radius:var(--zl-r-xl); 
+    overflow:hidden; 
+    position:relative;
+}
+.zlzone-feature {
+  /* bỏ nền để không thấy “mảng xanh” khi chưa load ảnh (tùy chọn) */
+  background: transparent;
+  height: clamp(360px, 60vh, 640px);  /* chiều cao ổn định */
+  border-radius: var(--zl-r-xl);
+  overflow: hidden;
+}
+.zlzone-feature__media{ height:70vh; background:var(--bird-image) center right/cover no-repeat }
+.zlzone-feature__text{ position:absolute; bottom:24px; left:24px; right:24px; max-width:560px }
+.zlzone-feature__heading{ margin:0 0 8px; font-size:clamp(26px,4vw,44px); font-weight:900 }
+.zlzone-feature__desc{ margin:0; color:var(--zl-ink-dim); font-size:clamp(14px,2vw,18px) }
+
+/* ===========================
+   ANIMAL SHELF – panel + full width + grid 5 cột
+=========================== */
+.zlzone-shelf{ max-width:var(--zl-page-max); margin:56px auto 0; padding:0 8px }
+
+/* Panel nền mờ sau */
+.zlzone-shelf--panel{ position:relative; padding:36px 0 24px }
+.zlzone-shelf--panel::before{
+  content:""; position:absolute; top:0; left:50%;
+  width:min(1120px,calc(100% - 64px));
+  height:clamp(750px,26vw,320px);
+  transform:translateX(-50%);
+  background:rgba(0,0,0,.22);
+  border-radius:28px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+  z-index:0;
+}
+
+/* Full-bleed */
+.zlzone-shelf--full{ 
+    max-width:none; 
+    width:95vw; 
+    margin-left:50%; 
+    transform:translateX(-50%); 
+    padding-left:0; 
+    padding-right:0 }
+.zlzone-shelf--full.zlzone-shelf--panel::before{ width:min(1120px,92%) }
+
+/* Head */
+.zlzone-shelf__head{ position:relative; z-index:1; text-align:center; margin:0 auto 18px; max-width:820px; padding:0 8px }
+.zlzone-shelf__title{ font-size:clamp(28px,4.6vw,48px); line-height:1.2; font-weight:900; margin:0 0 10px }
+.zlzone-shelf__lead{ color:var(--zl-ink-dim); font-size:clamp(14px,2vw,18px); margin:0 auto }
+
+/* Rail = grid */
+.zlzone-shelf--full .zlzone-shelf__rail{
+  position:relative; z-index:1;
+  display:grid; grid-template-columns:repeat(5,1fr); gap:28px;
+  overflow:visible; padding:12px clamp(20px,4vw,40px) 28px;
+}
+/* Responsive columns */
+@media (max-width:1280px){ .zlzone-shelf--full .zlzone-shelf__rail{ grid-template-columns:repeat(4,1fr) } }
+@media (max-width:1024px){ .zlzone-shelf--full .zlzone-shelf__rail{ grid-template-columns:repeat(3,1fr) } }
+@media (max-width:768px){  .zlzone-shelf--full .zlzone-shelf__rail{ grid-template-columns:repeat(2,1fr) } }
+@media (max-width:480px){  .zlzone-shelf--full .zlzone-shelf__rail{ grid-template-columns:1fr } }
+
+/* Card */
+.zlzone-card{
+  width:100%; min-width:0; height:clamp(320px,32vw,420px);
+  position:relative; border-radius:22px; overflow:hidden;
+  background:#0f4a4c; border:1px solid rgba(255,255,255,.06);
+  box-shadow:0 10px 22px rgba(0,0,0,.25);
+  transition:transform .18s ease;
+}
+.zlzone-card:hover{ transform:translateY(-2px) }
+.zlzone-card__media{
+  position:absolute; inset:0; background-size:cover; background-position:center;
+  transform:scale(1.02); filter:saturate(1.03) contrast(1.02); z-index:0;
+}
+.zlzone-card::after{
+  content:""; position:absolute; inset:0; z-index:1;
+  background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.25) 55%,rgba(0,0,0,.55) 100%);
+  pointer-events:none;
+}
+.zlzone-card__info{
+  position:absolute; left:16px; right:16px; bottom:16px; z-index:2;
+  color:#fff; text-shadow:0 2px 8px rgba(0,0,0,.45);
+}
+.zlzone-card__name{ font-weight:800; font-size:18px; margin-bottom:6px }
+.zlzone-card__sci{ font-size:13px; opacity:.95 }
+
+/* Skeleton state for cards */
+.zlzone-card.is-skeleton .zlzone-card__media{ background:#0a3f41 }
+.zlzone-card.is-skeleton .zlzone-card__info .zlzone-card__name,
+.zlzone-card.is-skeleton .zlzone-card__info .zlzone-card__sci{
+  height:14px; background:rgba(255,255,255,.12); border-radius:8px;
+}
+.zlzone-card.is-skeleton .zlzone-card__info .zlzone-card__name{ width:55%; margin-bottom:8px }
+.zlzone-card.is-skeleton .zlzone-card__info .zlzone-card__sci{ width:35% }
+
+/* ===========================
+   AREAS (Exhibits)
+=========================== */
+.zlzone-areas{ max-width:var(--zl-page-max); margin:56px auto 100px; padding:0 16px }
+.zlzone-areas__title{ font-size:clamp(26px,4vw,46px); font-weight:900; margin:0 0 18px }
+.zlzone-areas__list{ display:grid; gap:28px }
+
+.zlzone-area{
+  position:relative; height:clamp(300px,45vw,460px);
+  border-radius:var(--zl-r-xl); overflow:hidden; background:var(--zl-bg-soft);
+}
+.zlzone-area__bg{
+  position:absolute; inset:0; background-size:cover; background-position:center;
+  transform:scale(1.02); z-index:0; /* <— ensure bg under overlay */
+}
+.zlzone-area__overlay{
+  position:absolute; inset:0; z-index:1; /* <— ensure overlay over bg */
+  background:linear-gradient(
+    to right,
+    rgba(0,0,0,.55) 0 40%,
+    rgba(0,0,0,.15) 60%,
+    rgba(0,0,0,0) 100%
+  );
+}
+.zlzone-area--right .zlzone-area__overlay{
+  background:linear-gradient(
+    to left,
+    rgba(0,0,0,.55) 0 40%,
+    rgba(0,0,0,.15) 60%,
+    rgba(0,0,0,0) 100%
+  );
+}
+.zlzone-area__content{
+  position:relative; z-index:2; /* <— content on top */
+  height:100%; display:flex; flex-direction:column; justify-content:center;
+  gap:12px; padding:28px; max-width:520px;
+}
+.zlzone-area--left .zlzone-area__content{ align-items:flex-start }
+.zlzone-area--right .zlzone-area__content{ margin-left:auto; align-items:flex-end; text-align:right }
+
+.zlzone-area__heading{
+  margin:0; font-size:clamp(28px,4.5vw,52px); font-weight:900;
+  text-shadow:0 8px 28px rgba(0,0,0,.35);
+}
+.zlzone-area__blurb{ margin:0 0 6px; color:var(--zl-ink-dim); font-size:clamp(14px,2vw,18px); max-width:44ch }
+
+/* Skeleton state for areas */
+.zlzone-area.is-skeleton .zlzone-area__bg{ background:#0a3f41 }
+.zlzone-area.is-skeleton .zlzone-area__heading,
+.zlzone-area.is-skeleton .zlzone-area__blurb{
+  background:rgba(255,255,255,.12); border-radius:10px; color:transparent;
+}
+.zlzone-area.is-skeleton .zlzone-area__heading{ height:32px; width:60% }
+.zlzone-area.is-skeleton .zlzone-area__blurb{ height:14px; width:80% }
+
+/* ===========================
+   Responsive tweaks
+=========================== */
+@media (max-width:720px){
+  .zlzone-feature__text{ position:static; padding:16px }
+  .zlzone-area__content{ padding:20px; max-width:unset }
+}

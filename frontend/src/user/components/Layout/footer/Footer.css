@@ -1,0 +1,234 @@
+/* zooFooter.css */
+:root {
+  --zoo-footer-bg: #043638;
+  --zoo-footer-panel: #d3d9aa;
+  --zoo-footer-panel-text: #132321;
+  --zoo-footer-pill: #e8ff62;
+  --zoo-footer-radius: 20px;
+}
+
+/* ========== Base ========== */
+.zoo-footer {
+  background: var(--zoo-footer-bg);
+  color: #eaf4ee;
+  font-family: inherit;
+}
+.zoo-footer__container {
+  width: min(1180px, 95%);
+  margin: 0 auto;
+}
+/* ========== Terms & Conditions ========== */
+.zoo-footer__terms-title {
+  font-family: 'Momo';
+  font-weight: 800;
+  font-size: clamp(18px, 2.8vw, 30px);
+  letter-spacing:1px;
+  margin-bottom: 12px;
+  color: #fff;
+}
+.zoo-footer__terms p {
+  margin: 20px 0;
+  color: #d2e9e3;
+  line-height: 1.6;
+  max-width: 100%;
+}
+/* ========== Newsletter ========== */
+.zoo-footer__newsletter {
+  padding: 36px 0 20px;
+  text-align: center;
+}
+.zoo-footer__title {
+  font-family: 'Momo';
+  letter-spacing: 1px;
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 800;
+  margin: 0 0 8px;
+}
+.zoo-footer__lead {
+  color: #c7e4db;
+  margin-bottom: 18px;
+}
+.zoo-footer__subscribe-card {
+  background: #f3f6ea;
+  border-radius: var(--zoo-footer-radius);
+  width: min(780px, 96%);
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+}
+.zoo-footer__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.zoo-footer__inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 10px;
+}
+.zoo-footer__inputs input {
+  border: 1px solid #dce3c9;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+}
+.zoo-footer__consent {
+  
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  text-align: left;
+  color: #374236;
+}
+.zoo-footer__btn {
+  background: var(--zoo-footer-pill);
+  color: #09110f;
+  font-weight: 800;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 22px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+/* ========== Main Panel ========== */
+.zoo-footer__main {
+  padding: 30px 0 10px;
+}
+.zoo-footer__grid {
+  background: var(--zoo-footer-panel);
+  color: var(--zoo-footer-panel-text);
+  border-radius: var(--zoo-footer-radius);
+  display: grid;
+  grid-template-columns: 1.2fr 2fr 1.2fr;
+  gap: 30px;
+  padding: 30px 24px;
+}
+
+/* Logo & Brand */
+.zoo-footer__logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+.zoo-footer__logo-mark {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #1e322d;
+  color: #e4f5e9;
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 22px;
+}
+.zoo-footer__logo-text {
+  
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+.zoo-footer__social {
+  list-style: none;
+  display: flex;
+  gap: 10px;
+  margin: 14px 0 10px;
+  padding: 0;
+}
+.zoo-footer__social a {
+  
+  background: #e4e8c8;
+  color: #1e2b26;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+}
+.zoo-footer__copyright {
+  font-size: 13px;
+  color: #21322e;
+}
+
+/* Links */
+.zoo-footer__links {
+  
+  display: grid;
+  grid-template-columns: repeat(2, minmax(160px, 1fr));
+  gap: 20px 40px;
+}
+.zoo-footer__linkcol h4 {
+  font-family: 'Momo';
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+.zoo-footer__linkcol a {
+  display: block;
+  font-size: 14px;
+  color: #1f2a25;
+  text-decoration: none;
+  padding: 4px 0;
+}
+.zoo-footer__linkcol a:hover {
+  text-decoration: underline;
+}
+
+/* Badges */
+.zoo-footer__badges h5 {
+  font-family: 'Momo';
+  letter-spacing: 1px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+.zoo-footer__badges-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.zoo-footer__badges-row img {
+  width: 78px;
+  border-radius: 8px;
+  background: #f0f4d8;
+  padding: 6px;
+}
+
+/* Legal */
+.zoo-footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: flex-start;
+  color: #d3e5d7;
+  font-size: 13px;
+  margin-top: 18px;
+}
+.zoo-footer__legal a {
+  color: #d3e5d7;
+  text-decoration: none;
+}
+.zoo-footer__legal a:hover {
+  text-decoration: underline;
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 980px) {
+  .zoo-footer__inputs {
+    grid-template-columns: 1fr;
+  }
+  .zoo-footer__grid {
+    grid-template-columns: 1fr;
+  }
+  .zoo-footer__links {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 520px) {
+  .zoo-footer__links {
+    grid-template-columns: 1fr;
+  }
+}
