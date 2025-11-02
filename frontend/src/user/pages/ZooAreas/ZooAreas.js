@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./ZooAreas.css";
 
 export default function ZooAreas() {
+  const navigate = useNavigate();
   const [exhibits, setExhibits] = useState([]);
   const [loadingEx, setLoadingEx] = useState(true);
 
@@ -140,7 +142,12 @@ export default function ZooAreas() {
                   <h4 className="zlzone-area__heading">{title || " "}</h4>
                   <p className="zlzone-area__blurb">{blurb || " "}</p>
                   {!loadingEx && (
-                    <button className="zlzone-btn zlzone-btn--pill">Xem chi tiết</button>
+                    <button
+                      className="zlzone-btn zlzone-btn--pill"
+                      onClick={() => navigate(`/areas/${ex?.slug || ex?._id}`)}
+                      >
+                        Xem chi tiết
+                      </button>
                   )}
                 </div>
               </article>

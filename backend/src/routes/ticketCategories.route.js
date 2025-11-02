@@ -3,7 +3,7 @@ import { TicketCategory } from "../model/schemas/TicketCategory.js";
 
 const router = express.Router();
 
-router.get("/ticket-categories", async (_req, res) => {
+router.get("/", async (_req, res) => {
   try {
     const docs = await TicketCategory
       .find({ isActive: true })

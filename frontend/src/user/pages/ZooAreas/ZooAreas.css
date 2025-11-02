@@ -45,8 +45,11 @@
     z-index: 0;
 }
 .zlzone-hero__bg{
-  position:absolute; inset:0; background-image:var(--zooareas-image);
-  background-size:cover; background-position:center 20%; min-height:100vh; z-index:0;
+  position:absolute; inset:0;
+   background-image:var(--zooareas-image);
+  background-size:cover; 
+  background-position:center 20%; 
+  min-height:100vh; z-index:0;
 }
 .zlzone-hero__overlay{
   position:absolute; inset:0; z-index:1;

@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const exhibitSchema = new mongoose.Schema({
-  slug: { type: String, required: true, unique: true },
+  slug: { type: String, required: true, unique: true, index: true, trim: true, lowercase: true },
   name: { type: String, required: true },
   description: { type: String },
   heroImage: { type: String },

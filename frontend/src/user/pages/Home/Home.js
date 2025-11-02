@@ -3,9 +3,9 @@ import React, { useState,useEffect } from "react";
 import "./Home.css";
 
 export default function Home() {
-  const [showVideo, setShowVideo] = useState(false);
   const heroUrl = process.env.PUBLIC_URL + '/hero/hero_home.png';
-  const cuteani = process.env.PUBLIC_URL + '/img/cute_ani.png';
+  
+  const [showVideo, setShowVideo] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
@@ -102,7 +102,7 @@ function getImageUrl(t) {
                 className="modal__video"
                 controls
                 autoPlay
-                src=""
+                src="https://res.cloudinary.com/dbifhgaic/video/upload/v1759763791/samples/elephants.mp4"
                 poster=""
               >
                 Trình duyệt của bạn không hỗ trợ video.

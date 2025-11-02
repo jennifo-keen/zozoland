@@ -48,7 +48,7 @@ app.get("/", (_req, res) => res.json({ ok: true }));
 // ✅ mount API
 
 app.use("/api", customerRoutes);
-app.use("/api", ticketCategoriesRoutes);
+app.use("/api/ticket-categories", ticketCategoriesRoutes);
 app.use("/api/animals", animalRoutes);
 app.use("/api/exhibits", exhibitRoutes);
 
