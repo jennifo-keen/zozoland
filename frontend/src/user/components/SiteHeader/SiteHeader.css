@@ -1,0 +1,35 @@
+:root{
+  --ink:#eaf9f6;
+  --ink-dim:#cfe9e3;
+  --bg:#053a3c;
+  --glass: rgba(255,255,255,.06);
+}
+
+.zl-header{
+  position:sticky; /* bám trên cùng khi cuộn */
+  top:0; z-index:20;
+  backdrop-filter: blur(6px);
+  background: color-mix(in oklab, var(--bg) 92%, transparent);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.zl-header__inner{
+  height:72px;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 20px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+
+.zl-logo{
+  appearance:none; border:0; background:transparent; padding:0; cursor:pointer;
+  display:flex; align-items:center;
+}
+.zl-logo img{ height:36px; width:auto; display:block; }
+
+.zl-nav{ display:flex; align-items:center; gap:16px; }
+.zl-nav__link{
+  color:var(--ink); text-decoration:none; font-weight:600; font-size:14px;
+  padding:8px 10px; border-radius:10px;
+}
+.zl-nav__link:hover{ background:var(--glass); }

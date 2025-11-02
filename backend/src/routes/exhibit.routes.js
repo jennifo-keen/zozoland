@@ -42,7 +42,6 @@ router.get("/:idOrSlug", async (req, res) => {
     res.status(500).json({ message: "Lỗi server", error: err.message });
   }
 });
-/** GET /api/exhibits/:idOrSlug/animals — danh sách động vật trong khu */
 // GET /api/exhibits/:idOrSlug/animals
 router.get("/:idOrSlug/animals", async (req, res) => {
   try {
@@ -53,8 +52,6 @@ router.get("/:idOrSlug/animals", async (req, res) => {
     const fields = (req.query.fields
       ? req.query.fields.replace(/\s/g, "").split(",").join(" ")
       : "name slug heroImage shortDescription sciName exhibit exhibitId exhibits");
-
-    // ⭐ Quan trọng: cover cả 3 kiểu schema
     const filter = {
       isActive: true,
       $or: [

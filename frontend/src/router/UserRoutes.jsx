@@ -2,9 +2,10 @@ import { Route } from "react-router-dom";
 import Layout from "../user/components/Layout/Layout";
 import Home from "../user/pages/Home/Home";
 import About from "../user/pages/About";
-import Login from "../user/pages/Login/Login"
+import Login from "../user/pages/login&register/Login/Login"
 import ZooAreas from "../user/pages/ZooAreas/ZooAreas";
 import AreaDetail from "../user/pages/AreaDetail/AreaDetail";
+import Register from "../user/pages/login&register/register/Register";
 export function UserRoutes() {
   return (
     <>
@@ -14,6 +15,7 @@ export function UserRoutes() {
       <Route path="zooareas" element={<ZooAreas />} />
       <Route path="/areas/:idOrSlug" element={<AreaDetail />} />
     </Route>
+    <Route path="register" element={<Register />} />
     <Route path="login" element={<Login />} />
     </>
   );
