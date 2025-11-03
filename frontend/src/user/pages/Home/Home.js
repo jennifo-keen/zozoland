@@ -73,7 +73,7 @@ function getImageUrl(t) {
           </p>
 
           <div className="zoo-home__cta-row">
-            <a href="#book" className="zoo-home__btn zoo-home__btn--primary">Đặt vé ngay</a>
+            <a href="/bookingdate" className="zoo-home__btn zoo-home__btn--primary">Đặt vé ngay</a>
             <a href="/zooareas" className="zoo-home__btn zoo-home__btn--primary">Khám phá sở thú</a>
           </div>
         </div>
@@ -149,7 +149,7 @@ function getImageUrl(t) {
                   )}
 
                   <div className="card__price">{formatVND(t.basePrice)}</div>
-                  <button className="btn btn-block">Đặt ngay</button>
+                  <a className="btn-block" href="/bookingdate" >Đặt ngay</a>
                 </div>
               </article>
             ))}
@@ -168,7 +168,7 @@ function getImageUrl(t) {
             />
             <div className="cta__text">
               <h3>Tham quan các loài động vật đáng yêu</h3>
-              <a href="#book" className="btn btn-pill">Đặt vé ngay</a>
+              <a href="/bookingdate" className="btn btn-pill">Đặt vé ngay</a>
             </div>
           </div>
         </div>
@@ -178,7 +178,7 @@ function getImageUrl(t) {
         <div className="zoo-home__float-text">
           Đặt lịch tham quan ZozoLand ngay thôi !!!
         </div>
-        <a href="#book" className="zoo-home__btn-mini">Đặt vé ngay</a>
+        <a href="/bookingdate" className="zoo-home__btn-mini">Đặt vé ngay</a>
       </div>
     </div>
   );

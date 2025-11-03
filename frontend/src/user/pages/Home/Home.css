@@ -266,7 +266,9 @@ img{max-width:100%;display:block}
   font-weight:800;
   font-family: 'Momo';
   letter-spacing: 1px;
+  text-align: center;
 }
+
 .card--adult{background: color-mix(in oklab, var(--card-adult), #0a3e41 60%)}
 .card--kid{background: color-mix(in oklab, var(--card-kid), #0a3e41 70%)}
 .card--student{background: color-mix(in oklab, var(--card-student), #0a3e41 68%)}

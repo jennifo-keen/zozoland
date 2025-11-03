@@ -31,7 +31,4 @@ const animalSchema = new Schema(
   { timestamps: { updatedAt: true, createdAt: false } }
 );
 
-animalSchema.index({ slug: 1 }, { unique: true });
-animalSchema.index({ commonName: "text", scientificName: "text", tags: "text" });
-
 export const Animal = mongoose.model("Animal", animalSchema, "animals");

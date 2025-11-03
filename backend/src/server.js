@@ -11,6 +11,9 @@ import ticketCategoriesRoutes from "./routes/ticketCategories.route.js";
 import animalRoutes from "./routes/animal.routes.js";
 import exhibitRoutes from "./routes/exhibit.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+import ticketCalendarRoutes from "./routes/ticketCalendar.routes.js";
+import reservationRoutes from "./routes/reservation.routes.js";
+import ticketCatalogRoutes from "./routes/ticketCatalog.routes.js";
 
 // ===== EXPRESS APP SETUP =====
 const app = express();
@@ -26,7 +29,10 @@ app.use("/api", customerRoutes);
 app.use("/api/ticket-categories", ticketCategoriesRoutes);
 app.use("/api/animals", animalRoutes);
 app.use("/api/exhibits", exhibitRoutes);
-app.use("/auth", authRoutes); // <— mount các route ở trên
+app.use("/auth", authRoutes);
+app.use("/api/tickets", ticketCalendarRoutes);
+app.use("/api/reservations", reservationRoutes);
+app.use("/api/tickets", ticketCatalogRoutes);
 // ===== START SERVER =====
 const PORT = process.env.PORT || 4000;
 connectDB().then(() =>

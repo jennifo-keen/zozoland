@@ -6,6 +6,8 @@ import Login from "../user/pages/login&register/Login/Login"
 import ZooAreas from "../user/pages/ZooAreas/ZooAreas";
 import AreaDetail from "../user/pages/AreaDetail/AreaDetail";
 import Register from "../user/pages/login&register/register/Register";
+import BookingDate from "../user/pages/BookingDate/BookingDate";
+import Bookingticket from "../user/pages/BookingTickets/BookingTickets";
 export function UserRoutes() {
   return (
     <>
@@ -14,9 +16,12 @@ export function UserRoutes() {
       <Route path="about" element={<About />} />
       <Route path="zooareas" element={<ZooAreas />} />
       <Route path="/areas/:idOrSlug" element={<AreaDetail />} />
+      
     </Route>
     <Route path="register" element={<Register />} />
     <Route path="login" element={<Login />} />
+    <Route path="bookingDate" element={<BookingDate />} />
+    <Route path="booking/tickets" element={<Bookingticket />} />
     </>
   );
 }

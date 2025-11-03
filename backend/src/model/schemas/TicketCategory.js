@@ -24,9 +24,7 @@ const ticketCategorySchema = new mongoose.Schema(
   { timestamps: { updatedAt: true, createdAt: false } }
 );
 
-// index nhẹ cho truy vấn theo code/active
-ticketCategorySchema.index({ code: 1 }, { unique: true });
-ticketCategorySchema.index({ isActive: 1 });
+
 
 export const TicketCategory = mongoose.model(
   "TicketCategory",

@@ -82,9 +82,9 @@ export default function Header() {
           </a>
 
           <div className="nav__links_header">
-            <a href="#visit">Visit</a>
-            <a href="#what">What’s here</a>
-            <a href="#support">Support us</a>
+            <a href="/zooareas">Tham quan</a>
+            <a href="#what">Tin tức</a>
+            <a href="#support">Liên hệ chúng tôi</a>
           </div>
 
           <div className="nav__actions">

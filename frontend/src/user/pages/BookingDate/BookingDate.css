@@ -1,0 +1,156 @@
+/* ---------------------------
+   Booking Date Picker Styles
+   (prefix: .bkdp-*)
+----------------------------*/
+:root{
+  --bg:#073b3d;
+  --bg-soft:#0b4c4e;
+  --ink:#eaf9f6;
+  --ink-dim:#cfe9e3;
+  --accent:#ffe934;
+  --mint:#9be7d1;
+  --pink:#f7a3d8;
+  --yellow:#ffe934;
+  --brown:#c9a368;
+  --gray:#dfe6e9;
+}
+
+.bkdp-page{
+  min-height:100vh;
+  background:var(--bg);
+  color:var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  padding: 28px 20px 56px;
+}
+
+/* Steps (breadcrumb-like) */
+.bkdp-steps{
+  display:flex; align-items:center; gap:10px;
+  font-size:14px; color:var(--ink-dim); opacity:.95; user-select:none;
+  justify-content:center;
+}
+.bkdp-steps .is-active{
+  color:#fff; font-weight:600; border-bottom:2px solid #fff; padding-bottom:3px;
+}
+
+/* Title */
+.bkdp-title{
+    font-family: "Momo";
+  font-size: clamp(26px, 4.5vw, 56px);
+  line-height:1.08;
+  margin: 22px 0 24px;
+  font-weight: 800;
+  text-align: center;
+    letter-spacing: 1.5px;
+}
+
+/* Two-column layout */
+.bkdp-layout{
+  max-width:1200px; margin:0 auto;
+  display:grid; grid-template-columns: 1.1fr .9fr; gap:40px;
+}
+
+/* Calendar shell */
+.bkdp-calendar{
+  background:transparent;
+  width: fit-content;
+}
+
+.bkdp-cal-head{
+  display:flex; align-items:center; justify-content:space-between;
+  margin-bottom:16px;
+}
+.bkdp-month{
+    font-family: "Momo";
+  font-size:20px; letter-spacing:1px; display:flex; align-items:center; gap:8px;
+}
+.bkdp-diamond{ font-size:14px; opacity:.85; margin-top:1px; }
+
+.bkdp-nav{
+  appearance:none; border:0; background:transparent; color:#fff;
+  font-size:24px; line-height:1; padding:6px 10px; border-radius:12px;
+  opacity:.5; cursor:pointer;   ;  /* khóa như ảnh demo */
+}
+
+/* Weekdays header */
+.bkdp-weekdays{
+  display:grid; grid-template-columns: repeat(7, 48px);
+  gap:14px; padding-left:8px; margin-bottom:12px;
+  font-size:14px; color:var(--ink-dim);
+  text-align: center;
+  justify-content: space-between;
+}
+@media (min-width:560px){
+  .bkdp-weekdays{ grid-template-columns: repeat(7, 64px); }
+}
+
+/* Grid days */
+.bkdp-grid{
+  display:flex; flex-direction:column; gap:14px;
+}
+.bkdp-row{
+  display:grid; grid-template-columns: repeat(7, 48px); gap:14px; padding-left:8px;justify-content: space-between;
+}
+@media (min-width:560px){
+  .bkdp-row{ grid-template-columns: repeat(7, 64px); }
+}
+.bkdp-cell{
+  width:48px; height:48px; border-radius:999px;
+  display:flex; align-items:center; justify-content:center;
+  font-weight:700; font-size:16px;
+}
+@media (min-width:560px){
+  .bkdp-cell{ width:64px; height:64px; font-size:18px; }
+}
+.bkdp-cell.is-empty{ opacity:0; }
+
+.bkdp-day{
+  border:0; cursor:pointer; transition: transform .15s ease, box-shadow .15s ease;
+  color:#0c2b2c;  /* mặc định chữ đậm dễ đọc trên nền sáng */
+  box-shadow: 0 6px 18px rgba(0,0,0,.18);
+}
+.bkdp-day:focus-visible{ outline:2px solid #fff; outline-offset:2px; }
+
+/* Tone colors */
+.bkdp-day.is-value{ background: var(--mint); color:#083233; }
+.bkdp-day.is-off-peak{ background: var(--pink); color:#3a152b; }
+.bkdp-day.is-standard-offer{ background: var(--yellow); color:#212121; }
+.bkdp-day.is-unavailable{ background: var(--gray); color:#667; cursor:not-allowed; }
+.bkdp-day.is-selected{ box-shadow: 0 0 0 3px #fff inset, 0 10px 26px rgba(0,0,0,.28); transform: translateY(-1px); }
+
+/* Legend */
+.bkdp-legend{
+  margin-top:18px; display:flex; flex-wrap:wrap; gap:14px 20px; padding-left:8px;
+  color:var(--ink-dim); font-size:15px;
+}
+.bkdp-legend__item{ display:inline-flex; align-items:center; gap:10px; }
+.bkdp-dot{
+  width:16px; height:16px; border-radius:999px; display:inline-block; box-shadow: 0 2px 6px rgba(0,0,0,.2);
+}
+.dot-value{ background: var(--mint); }
+.dot-off-peak{ background: var(--pink); }
+.dot-standard{ background: var(--bg-soft); outline:2px dashed rgba(255,255,255,.35); outline-offset:2px; } /* mục Standard (mặc định) */
+.dot-standard-offer{ background: var(--yellow); }
+.dot-base{ background: var(--brown); }
+.dot-unavailable{ background: var(--gray); }
+
+/* Notes (right column) */
+.bkdp-notes{
+  background:transparent; border-left:1px solid rgba(255,255,255,.08); padding-left:28px;
+}
+.bkdp-notes ul{ margin:0; padding:0; display:flex; flex-direction:column; gap:12px; }
+.bkdp-notes li{
+  list-style:none; color:var(--ink-dim); line-height:1.5; font-size:16px;
+}
+.next-step-btn{
+  background:var(--zl-accent); color:#111; width:max-content;
+  border:0; 
+  border-radius:999px;
+  padding:14px 22px; font-weight:700; cursor:pointer;
+  box-shadow:0 8px 24px rgba(255,233,52,.25);
+}
+/* Responsive: stack columns */
+@media (max-width: 920px){
+  .bkdp-layout{ grid-template-columns: 1fr; gap:30px; }
+  .bkdp-notes{ border-left:0; padding-left:0; }
+}
