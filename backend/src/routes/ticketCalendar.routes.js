@@ -5,12 +5,6 @@ import { Reservation } from "../model/schemas/Reservation.js";
 
 const router = express.Router();
 
-/**
- * GET /api/tickets/availability
- * Cách gọi:
- *   - /availability?date=2025-11-02T00:00:00.000Z   (khuyến nghị)
- *   - /availability?year=2025&month=11              (vẫn hỗ trợ)
- */
 router.get("/availability", async (req, res) => {
   try {
     let year, month;
@@ -58,7 +52,7 @@ router.get("/availability", async (req, res) => {
         available: false
         });
     } else {
-        // 👇 Thêm đoạn này
+
         const now = new Date();
         const holds = await Reservation.aggregate([
         {
@@ -80,13 +74,9 @@ router.get("/availability", async (req, res) => {
         ]);
 
         const h = holds[0] || { total: 0, adult: 0, child: 0, student: 0 };
-
-        // 👇 Phần cũ của bạn
         const soldTotal =
         doc.soldCounts?.total ??
         ((doc.soldCounts?.adult || 0) + (doc.soldCounts?.child || 0) + (doc.soldCounts?.student || 0));
-
-        // 👇 Cập nhật: trừ thêm vé đang giữ chỗ
         const remaining = Math.max(0, doc.totalCapacity - soldTotal - (h.total || 0));
 
         out.push({

@@ -94,7 +94,7 @@ export default function Login() {
                 name="email"
                 value={form.email}
                 onChange={onChange}
-                placeholder="ban@vidu.com"
+                placeholder="Hãy nhập email của bạn"
                 autoComplete="email"
                 className={`login-input ${errors.email ? "has-error" : ""}`}
               />

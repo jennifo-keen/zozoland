@@ -13,14 +13,8 @@ router.get("/catalog", async (req, res) => {
 
     const d = new Date(dateISO);
     const visitDate = new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
-
-    // 1) categories đang active
     const cats = await TicketCategory.find({ isActive: true }).lean();
-
-    // 2) hạn mức ngày + sold
     const day = await DailyTicketLimit.findOne({ date: visitDate }).lean();
-
-    // 3) vé đang giữ (holding) theo từng loại
     const now = new Date();
     const holdsByCat = await Reservation.aggregate([
       { $match: { visitDate, status: "holding", expiresAt: { $gt: now } } },
@@ -36,10 +30,7 @@ router.get("/catalog", async (req, res) => {
     const perCap = day?.perCategoryCapacity || {};
     const sold = day?.soldCounts || {};
     const safe = (n) => n || 0;
-
-    // 4) build catalog trả về
     const catalog = cats.map(c => {
-      // giả sử code của bạn là "adult" | "child" | "student"
       const code = (c.code || "").toLowerCase();
       const remaining = Math.max(
         0,
