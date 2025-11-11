@@ -127,6 +127,23 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: "Lỗi khi tải thông tin giữ chỗ." });
   }
 });
+// cập nhật lại số lượng vé khi xóa
+// PATCH /api/reservations/update/:id
+router.patch("/update/:id", async (req, res) => {
+  const { id } = req.params;
+  const { quantities } = req.body;
+
+  if (!quantities) return res.status(400).json({ error: "quantities required" });
+
+  const doc = await Reservation.findOneAndUpdate(
+    { _id: id, status: "holding" },
+    { $set: { quantities } },
+    { new: true }
+  );
+
+  if (!doc) return res.status(404).json({ error: "Reservation not found or expired" });
+  res.json({ ok: true, quantities: doc.quantities });
+});
 
 // Hủy khi ng dùng bỏ bước
 // PATCH /api/reservations/cancel/:id

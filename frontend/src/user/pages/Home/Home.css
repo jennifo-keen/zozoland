@@ -243,8 +243,9 @@ img{max-width:100%;display:block}
   width:16px; height:16px; border-radius:4px; outline:2px solid #bff4e7; background:#8fe6da;
 }
 .card__price{
-    font-family: 'Momo';
+  font-family: 'Momo';
   letter-spacing: 1px;
+  text-align:center ;
   color:#fff; font-weight:900; font-size:22px; letter-spacing:.5px; margin:8px 0 12px;
 }
 .btn-block{width:100%; 
@@ -266,6 +267,7 @@ img{max-width:100%;display:block}
 .cta{padding:56px 0 92px;}
 .cta__box{
   font-family: 'Momo';
+  height: 500px;
   letter-spacing: 1px;
   position:relative; border-radius:28px; overflow:hidden;
   background-image: var(--cta-image);

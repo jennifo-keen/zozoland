@@ -102,6 +102,32 @@ export default function CheckoutConfirm() {
     const sec = s % 60;
     return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
   };
+  // --- Handle xóa vé ---
+  const handleRemoveItem = async (id) => {
+    const updated = items.filter((i) => i.id !== id);
+    setItems(updated);
+
+    if (!rid) return;
+
+    // Nếu vẫn còn vé => cập nhật lại quantities trong DB
+    if (updated.length > 0) {
+      const newQuantities = {
+        adult: updated.find((i) => i.id === "adult")?.qty || 0,
+        child: updated.find((i) => i.id === "child")?.qty || 0,
+        student: updated.find((i) => i.id === "student")?.qty || 0,
+      };
+
+      await fetch(`${API_BASE}/api/reservations/update/${rid}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ quantities: newQuantities }),
+      });
+    } else {
+      // Không còn vé nào → hủy luôn reservation
+      await fetch(`${API_BASE}/api/reservations/cancel/${rid}`, { method: "PATCH" });
+    }
+  };
+
 
   // --- Handle chọn phương thức thanh toán ---
   const handleSelectPayment = (method) => {
@@ -133,7 +159,9 @@ export default function CheckoutConfirm() {
                       <span className="zozo-checkout-item-price">
                         {(item.price * item.qty).toLocaleString()} VND
                       </span>
-                      <button className="zozo-checkout-item-remove">
+                      <button className="zozo-checkout-item-remove" 
+                      onClick={() => handleRemoveItem(item.id)}
+                      >
                         <FaTrashAlt />
                       </button>
                     </div>

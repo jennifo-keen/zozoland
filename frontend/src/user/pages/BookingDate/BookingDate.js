@@ -129,6 +129,12 @@ export default function BookingDate() {
             </div>
 
             <div className="bkdp-grid" role="grid" aria-busy={loading}>
+              {loading && (
+                <div className="bkdp-loading-overlay">
+                  <div className="spinner"></div>
+                  <p>Tình iu đợi sí nhaa...</p>
+                </div>
+              )}
               {weeks.map((row, rIdx) => (
                 <div className="bkdp-row" role="row" key={`r-${rIdx}`}>
                   {row.map((cell, cIdx) => {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import Profile from "./Profile.js";
-import TicketList from "./TicketList.js";
+import Profile from "./Profile/Profile.js";
+import TicketList from "./Ticketlist/TicketList.js";
 import LogoutConfirm from "./LogoutConfirm.js";
 import EditPassword from "./EditPassword.js";
 import DeleteAccount from "./DeleteAccount.js";
