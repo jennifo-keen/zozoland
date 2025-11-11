@@ -1,0 +1,120 @@
+.user-dashboard {
+  max-width: 100%;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  font-size: 16px;
+}
+
+.dashboard-nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #004b51; /* lớp xanh lá bao ngoài */
+  border-radius: 12px;
+  padding: 8px;
+  width: 50%;
+  margin-bottom: 24px;
+}
+
+/* Nút mặc định */
+.dashboard-nav button {
+  flex: 1;
+  margin: 0 4px;
+  padding: 12px 16px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  background-color: transparent;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Nút đang active → nền trắng, chữ xanh */
+.dashboard-nav button.active {
+  background-color: #ffffff;
+  color: #004b51;
+}
+
+/* Nút đăng xuất → màu đỏ */
+.dashboard-nav button.logout {
+  background-color: #d9534f;
+  color: #ffffff;
+}
+
+.dashboard-nav button.logout.active {
+  background-color: #ffffff;
+  color: #d9534f;
+}
+.dashboard-content{
+  max-width: 100%;
+  margin: 40px auto;
+  padding: 20px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #fff;
+  height:auto;
+  border-radius: 8px;
+}
+
+.logout-box {
+  text-align: center;
+}
+
+.logout-box p {
+  margin-bottom: 16px;
+  font-size: 1.1rem;
+}
+
+.logout-box button {
+  padding: 10px 20px;
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.logout-box button:hover {
+  background-color: #c9302c;
+}
+.dashboard-subnav {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 8px;
+  height: 50px;
+  font-size: 13px;
+  margin-bottom: 20px;
+}
+
+.dashboard-subnav button {
+  flex: 1;
+  margin: 0 4px;
+  padding: 12px 16px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #004950;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  justify-content: center;
+  font-size: 15px;
+}
+
+.dashboard-subnav button:hover {
+  background-color: #e6f0f0;
+}
+
+.dashboard-subnav .btn-danger:hover {
+  background-color: #c9302c;
+}
+.dashboard-subnav button.active {
+  background-color: #004950;
+  color: #fff;
+}

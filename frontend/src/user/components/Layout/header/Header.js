@@ -95,33 +95,11 @@ export default function Header() {
               </>
             ) : (
               <div className="user-menu">
-                <button
-                  type="button"
-                  ref={btnRef}
-                  className="btn btn-text user-menu__btn"
-                  aria-haspopup="menu"
-                  aria-expanded={open}
-                  onClick={() => setOpen((s) => !s)}   // mở/tắt bằng click
-                >
-                  {displayName}
-                  <span className="caret" aria-hidden="true">▾</span>
-                </button>
+              <a href={`/dashboard/${user.id}`} className="btn btn-text user-menu__btn">
+                {displayName}
+              </a>
 
-                {open && (
-                  <div className="user-menu__menu" role="menu" ref={menuRef}>
-                    <a href="#thongtin" className="user-menu__item" role="menuitem">
-                      Thông tin
-                    </a>
-                    <button
-                      type="button"
-                      className="user-menu__item is-danger"
-                      role="menuitem"
-                      onClick={logout}
-                    >
-                      Đăng xuất
-                    </button>
-                  </div>
-                )}
+
               </div>
             )}
           </div>

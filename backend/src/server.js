@@ -14,6 +14,7 @@ import authRoutes from "./routes/auth.routes.js";
 import ticketCalendarRoutes from "./routes/ticketCalendar.routes.js";
 import reservationRoutes from "./routes/reservation.routes.js";
 import ticketCatalogRoutes from "./routes/ticketCatalog.routes.js";
+import userRoutes from "./routes/userinfo.route.js";
 
 // ===== EXPRESS APP SETUP =====
 const app = express();
@@ -33,6 +34,8 @@ app.use("/auth", authRoutes);
 app.use("/api/tickets", ticketCalendarRoutes);
 app.use("/api/reservations", reservationRoutes);
 app.use("/api/tickets", ticketCatalogRoutes);
+app.use("/api/userinfo", userRoutes);
+
 // ===== START SERVER =====
 const PORT = process.env.PORT || 4000;
 connectDB().then(() =>

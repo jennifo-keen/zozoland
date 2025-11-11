@@ -8,20 +8,22 @@ import AreaDetail from "../user/pages/AreaDetail/AreaDetail";
 import Register from "../user/pages/login&register/register/Register";
 import BookingDate from "../user/pages/BookingDate/BookingDate";
 import Bookingticket from "../user/pages/BookingTickets/BookingTickets";
+import UserDashboard from "../user/pages/UserDashboard/UserDashBoard";
 export function UserRoutes() {
   return (
     <>
-    <Route path="/" element={<Layout />}>
-      <Route index element={<Home />} />
-      <Route path="about" element={<About />} />
-      <Route path="zooareas" element={<ZooAreas />} />
-      <Route path="/areas/:idOrSlug" element={<AreaDetail />} />
-      
-    </Route>
-    <Route path="register" element={<Register />} />
-    <Route path="login" element={<Login />} />
-    <Route path="bookingDate" element={<BookingDate />} />
-    <Route path="booking/tickets" element={<Bookingticket />} />
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route path="about" element={<About />} />
+        <Route path="zooareas" element={<ZooAreas />} />
+        <Route path="/areas/:idOrSlug" element={<AreaDetail />} />
+
+      </Route>
+      <Route path="register" element={<Register />} />
+      <Route path="login" element={<Login />} />
+      <Route path="bookingDate" element={<BookingDate />} />
+      <Route path="booking/tickets" element={<Bookingticket />} />
+      <Route path="/dashboard/:id" element={<UserDashboard />} />
     </>
   );
 }

@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true, lowercase: true },
   passwordHash: { type: String, required: true },
   phone: { type: String },
+  address: { type: String },
   dob: { type: Date },
   status: { type: String, enum: ["active", "blocked"], default: "active" }
 }, { timestamps: true });
