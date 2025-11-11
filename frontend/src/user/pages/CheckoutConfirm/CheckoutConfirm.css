@@ -1,0 +1,383 @@
+/* ==== ZOZO CHECKOUT STYLES ==== */
+
+.zozo-checkout-page {
+  background-color: #003b3b;
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.zozo-checkout-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 60px;
+}
+
+.zozo-checkout-logo {
+  height: 45px;
+}
+
+.zozo-checkout-login-btn {
+  background-color: #f6ff3e;
+  color: #003b3b;
+  font-weight: 700;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.zozo-checkout-login-btn:hover {
+  opacity: 0.8;
+}
+
+/* Breadcrumb */
+.zozo-checkout-breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #b5c9c9;
+  margin-top: 20px;
+}
+
+.zozo-checkout-breadcrumb span.active {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* Main container */
+.zozo-checkout-container {
+    width: 100%;
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.zozo-checkout-container h1 {
+    font-family: "Momo", sans-serif;
+    letter-spacing: 2px;
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+/* Order box */
+.zozo-checkout-order-box {
+  background-color: #0a4e4e;
+  border-radius: 8px;
+  padding: 20px 25px;
+  text-align: left;
+}
+
+.zozo-checkout-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #175757;
+}
+
+.zozo-checkout-item-name {
+  font-weight: 600;
+}
+
+.zozo-checkout-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.zozo-checkout-item-price {
+  color: #fff;
+}
+
+.zozo-checkout-item-remove {
+  background: none;
+  border: none;
+  color: #f6ff3e;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.zozo-checkout-item-remove:hover {
+  color: #ff6961;
+}
+
+/* Discount */
+.zozo-checkout-discount {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.zozo-checkout-discount input {
+  flex: 1;
+  background-color: #0a4e4e;
+  border: none;
+  outline: none;
+  color: #fff;
+  padding: 15px 14px;
+  border-radius: 6px;
+}
+
+.zozo-checkout-discount input::placeholder {
+  color: #a2b8b8;
+}
+
+.zozo-checkout-discount button {
+  background-color: #f6ff3e;
+  font-family: "Momo", sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #003b3b;
+  font-weight: 700;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+/* Total */
+.zozo-checkout-total {
+    text-align: right;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.zozo-checkout-total p {
+    margin: 4px 0;
+    font-family: "Momo", sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.zozo-checkout-total .price {
+  font-size: 26px;
+  font-weight: 800;
+  color: #f6ff3e;
+  letter-spacing: 0.5px;
+}
+.zozo-checkout-info-note{
+    display: flex;
+    justify-content: space-between;
+}
+/* Payment */
+.zozo-checkout-payment {
+  margin-top: 40px;
+  align-items: center;
+}
+
+.zozo-checkout-payment p {
+  font-size: 14px;
+  color: #c6d9d9;
+  margin-bottom: 10px;
+}
+
+.zozo-checkout-payment img {
+    display: flex;
+  height: 45px;
+  margin: 0 10px;
+}
+.checkout-payment-img{
+    display: flex;
+    justify-content: center;
+}
+/* Pay button */
+.zozo-checkout-pay-btn {
+  margin-top: 40px;
+  background-color: #f6ff3e;
+  color: #003b3b;
+  font-family: "Momo", sans-serif;
+  letter-spacing: 1px;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 14px 50px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.zozo-checkout-pay-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+/* Footer */
+.zozo-checkout-footer {
+  background-color: #bcc397;
+  color: #003b3b;
+  margin-top: 60px;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.zozo-checkout-footer img {
+  height: 45px;
+}
+
+.zozo-checkout-socials {
+  display: flex;
+  gap: 20px;
+  font-size: 22px;
+}
+
+.zozo-checkout-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  font-size: 14px;
+}
+
+.zozo-checkout-footer p {
+  font-size: 12px;
+  margin-top: 10px;
+}
+/* ==== TIMER ==== */
+.zozo-timer-box {
+  margin-top: 40px;
+  text-align: center;
+}
+.zozo-timer-box p {
+  font-size: 14px;
+  color: #c6d9d9;
+    margin-bottom: 10px;
+}
+.zozo-timer-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #f6ff3e;
+}
+
+/* ==== POPUP HẾT HẠN ==== */
+.zozo-expired-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.zozo-expired-modal {
+  background-color: #004040;
+  color: #fff;
+  padding: 40px 60px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.zozo-expired-modal h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.zozo-expired-timer {
+  font-size: 48px;
+  font-weight: 900;
+  color: #f6ff3e;
+  margin: 10px 0;
+}
+
+.zozo-expired-modal p {
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.zozo-expired-modal button {
+  background: #f6ff3e;
+  color: #003b3b;
+  font-weight: 700;
+  border: none;
+  border-radius: 9999px;
+  padding: 12px 40px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.zozo-expired-modal button:hover {
+  opacity: 0.9;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+/* ==== PAYMENT SELECT STYLES ==== */
+.checkout-payment-img img {
+  height: 50px;
+  margin: 0 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 12px;
+  padding: 8px;
+}
+
+.checkout-payment-img img:hover {
+  transform: scale(1.05);
+}
+
+.payment-selected {
+  background-color: #f6ff3e;
+  box-shadow: 0 0 12px #f6ff3e55;
+}
+
+.payment-dim {
+  opacity: 0.3;
+  filter: grayscale(100%);
+  cursor: pointer;           /* cho phép click lại */
+  pointer-events: auto;      /* KHÔNG chặn click nữa */
+  transition: all 0.3s ease;
+}
+.payment-dim:hover {
+  opacity: 0.5;
+  transform: scale(1.05);
+}
+
+/* ==== PAY BUTTON ACTIVE/DISABLED ==== */
+.zozo-checkout-pay-btn {
+  margin-top: 40px;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 14px 50px;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+
+.zozo-checkout-pay-btn.disabled {
+  background-color: #444;
+  color: #999;
+  cursor: not-allowed;
+}
+
+.zozo-checkout-pay-btn.active {
+  background-color: #f6ff3e;
+  color: #003b3b;
+}
+
+.zozo-checkout-pay-btn.active:hover {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}

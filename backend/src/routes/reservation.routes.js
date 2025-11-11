@@ -2,6 +2,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import { DailyTicketLimit } from "../model/schemas/DailyTicketLimit.js";
+import { TicketCategory } from "../model/schemas/TicketCategory.js";
 import { Reservation } from "../model/schemas/Reservation.js";
 
 const router = express.Router();
@@ -34,7 +35,6 @@ async function countActiveHolds(visitDateUtcStart) {
 
 /**
  * POST /api/reservations/hold
- * body: { visitDate: ISOString, quantities: { adult, child, student } }
  * -> tạo reservation "holding" 5 phút nếu còn chỗ
  */
 router.post("/hold", async (req, res) => {
@@ -93,6 +93,41 @@ router.post("/hold", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+
+// GET /api/reservations/:id
+router.get("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const doc = await Reservation.findById(id).lean();
+    if (!doc) return res.status(404).json({ error: "Không tìm thấy giữ chỗ." });
+
+    const now = new Date();
+    if (doc.status === "holding" && doc.expiresAt && doc.expiresAt <= now) {
+      return res.status(410).json({ error: "Giữ chỗ đã hết hạn." });
+    }
+
+    // 👉 Lấy giá động từ TicketCategory
+    const categories = await TicketCategory.find({}).lean();
+    const prices = {};
+    categories.forEach((cat) => {
+      prices[cat.code] = cat.basePrice;
+    });
+
+    res.json({
+      reservationId: doc._id,
+      visitDate: doc.visitDate,
+      quantities: doc.quantities,
+      status: doc.status,
+      expiresAt: doc.expiresAt,
+      prices, // giá động theo DB
+    });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ error: "Lỗi khi tải thông tin giữ chỗ." });
+  }
+});
+
 // Hủy khi ng dùng bỏ bước
 // PATCH /api/reservations/cancel/:id
 router.patch("/cancel/:id", async (req, res) => {
