@@ -1,0 +1,71 @@
+.create-admin-container {
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.create-admin-container h1 {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.create-admin-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.create-admin-container input,
+.create-admin-container select,
+.create-admin-container textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: border-color 0.2s;
+}
+
+.create-admin-container input:focus,
+.create-admin-container select:focus,
+.create-admin-container textarea:focus {
+  border-color: #4f46e5;
+  outline: none;
+}
+
+.create-admin-container textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.create-admin-container button {
+  padding: 12px;
+  background-color: #4f46e5;
+  color: #fff;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.create-admin-container button:hover {
+  background-color: #3730a3;
+}
+
+.create-admin-container button:disabled {
+  background-color: #a5b4fc;
+  cursor: not-allowed;
+}
+
+.create-admin-container p {
+  font-size: 14px;
+  margin: 0;
+  color: red;
+  text-align: center;
+}
