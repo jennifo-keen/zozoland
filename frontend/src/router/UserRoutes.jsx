@@ -10,6 +10,7 @@ import BookingDate from "../user/pages/BookingDate/BookingDate";
 import Bookingticket from "../user/pages/BookingTickets/BookingTickets";
 import UserDashboard from "../user/pages/UserDashboard/UserDashBoard";
 import CheckoutConfirm from "../user/pages/CheckoutConfirm/CheckoutConfirm";
+import CheckoutResult from "../user/pages/CheckoutConfirm/CheckoutResult";
 export function UserRoutes() {
   return (
     <>
@@ -26,6 +27,7 @@ export function UserRoutes() {
       <Route path="booking/tickets" element={<Bookingticket />} />
       <Route path="/dashboard/:id" element={<UserDashboard />} />
       <Route path="checkout" element={<CheckoutConfirm />} />
+      <Route path="checkout/result" element={<CheckoutResult />} />
     </>
   );
 }

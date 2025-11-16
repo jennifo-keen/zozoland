@@ -162,6 +162,24 @@ export default function BookingTickets() {
       if (!res.ok)
         throw new Error(data?.error || "Không giữ chỗ được. Vui lòng thử lại.");
 
+       const extraData = JSON.stringify({
+      reservationId: data.reservationId,
+      visitDate: visitDate.toISOString(),
+      items: catalog
+        .filter(c => qty[c.code] > 0)
+        .map(c => ({
+          categoryCode: c.code,
+          quantity: qty[c.code],
+          unitPrice: c.basePrice,
+          finalUnitPrice: c.basePrice, // nếu có giảm giá thì tính ở đây
+        })),
+      pricing: {
+        baseSubtotal: total,
+        currency: "VND",
+        totalPayable: total,
+      },
+    });
+
       // qua checkout
       navigate(`/checkout?rid=${data.reservationId}`);
     } catch (e) {
