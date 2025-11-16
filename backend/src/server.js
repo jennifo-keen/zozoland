@@ -17,6 +17,8 @@ import ticketCatalogRoutes from "./routes/ticketCatalog.routes.js";
 import userRoutes from "./routes/userinfo.route.js";
 import discountRoutes from "./routes/discount.routes.js";
 
+import adminUserRoutes from "./routes/adminUser.routes.js"
+// ===== EXPRESS APP SETUP =====
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -36,6 +38,8 @@ app.use("/api/reservations", reservationRoutes);
 app.use("/api/tickets", ticketCatalogRoutes);
 app.use("/api/userinfo", userRoutes);
 app.use("/api/discounts", discountRoutes);
+
+app.use("/api/admin", adminUserRoutes)
 // ===== START SERVER =====
 const PORT = process.env.PORT || 4000;
 connectDB().then(() =>
