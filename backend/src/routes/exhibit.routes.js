@@ -1,6 +1,5 @@
-// routes/exhibitRoutes.js (hoặc controller tương ứng)
 import express from "express";
-import mongoose from "mongoose";           // 👈 THÊM DÒNG NÀY
+import mongoose from "mongoose";          
 import {Animal} from "../model/schemas/Animals.js";
 import { findExhibitByIdOrSlug } from "../model/utils/exhibitLookup.js";
 import { Exhibit } from "../model/schemas/Exhibit.js";

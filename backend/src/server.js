@@ -1,11 +1,11 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { connectDB } from "./config/db.js"; // ⚠️ đường dẫn đã chỉnh lại 1 cấp
+import { connectDB } from "./config/db.js";
 import { User } from "./model/schemas/User.js";
 import "./model/schemas/Exhibit.js"
 
-// ➕ import routes
+// import routes
 import customerRoutes from "./routes/customer.route.js";
 import ticketCategoriesRoutes from "./routes/ticketCategories.route.js";
 import animalRoutes from "./routes/animal.routes.js";
@@ -16,7 +16,7 @@ import reservationRoutes from "./routes/reservation.routes.js";
 import ticketCatalogRoutes from "./routes/ticketCatalog.routes.js";
 import userRoutes from "./routes/userinfo.route.js";
 import discountRoutes from "./routes/discount.routes.js";
-// ===== EXPRESS APP SETUP =====
+
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -24,7 +24,7 @@ app.use(cors());
 
 app.get("/", (_req, res) => res.json({ ok: true }));
 
-// ✅ mount API
+//  API
 
 app.use("/api", customerRoutes);
 app.use("/api/ticket-categories", ticketCategoriesRoutes);

@@ -18,8 +18,8 @@ export function UserRoutes() {
         <Route path="about" element={<About />} />
         <Route path="zooareas" element={<ZooAreas />} />
         <Route path="/areas/:idOrSlug" element={<AreaDetail />} />
-
       </Route>
+      
       <Route path="register" element={<Register />} />
       <Route path="login" element={<Login />} />
       <Route path="bookingDate" element={<BookingDate />} />

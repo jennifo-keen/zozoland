@@ -19,9 +19,4 @@ router.get("/customers", async (req, res) => {
   }
 });
 
-
-// ll
-
-// 
-
 export default router;
