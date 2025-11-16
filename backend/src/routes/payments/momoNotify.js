@@ -1,8 +1,9 @@
-// momoNotify.js
 import express from "express";
 import { Payment } from "../../model/schemas/Payment.js";
 import { Order } from "../../model/schemas/Order.js";
 import { Reservation } from "../../model/schemas/Reservation.js";
+import { Ticket } from "../../model/schemas/Ticket.js";
+import crypto from "crypto";
 
 const momoNotify = express.Router();
 
@@ -17,7 +18,7 @@ momoNotify.post("/notify", async (req, res) => {
 
     const { orderId, amount, transId, extraData } = data;
 
-    // parse extraData
+    // parse extraData để lấy rid + userId
     let parsedExtra = {};
     try {
       parsedExtra = JSON.parse(extraData || "{}");
@@ -27,24 +28,28 @@ momoNotify.post("/notify", async (req, res) => {
     const rid = parsedExtra.rid;
     const userId = parsedExtra.userId;
 
-    // tạo Payment record
-    const payment = new Payment({
-      provider: "MoMo",
-      txnId: transId,
-      amount: Number(amount),
-      status: "succeeded",
-      paidAt: new Date(),
-      rawPayload: data
-    });
-    await payment.save();
+    // kiểm tra Payment đã tồn tại chưa
+    let payment = await Payment.findOne({ orderId: data.orderId });
+    if (!payment) {
+      payment = new Payment({
+        provider: "MoMo",
+        txnId: data.transId,
+        amount: Number(data.amount),
+        status: "succeeded",
+        paidAt: new Date(),
+        rawPayload: data,
+        orderId: data.orderId,
+      });
+      await payment.save();
+    }
 
-    // lấy reservation từ DB
+    // lấy reservation nếu có
     let reservation = null;
     if (rid) {
       reservation = await Reservation.findById(rid);
     }
 
-    // map quantities -> items
+    // tạo Order
     const items = reservation
       ? [
           reservation.quantities.adult > 0 && {
@@ -68,7 +73,6 @@ momoNotify.post("/notify", async (req, res) => {
         ].filter(Boolean)
       : [];
 
-    // tạo Order dựa vào reservation
     const order = new Order({
       userId: userId || reservation?.userId || null,
       visitDate: reservation?.visitDate || new Date(),
@@ -87,6 +91,26 @@ momoNotify.post("/notify", async (req, res) => {
     // liên kết Payment -> Order
     payment.orderId = order._id;
     await payment.save();
+
+    // tạo Ticket cho từng item
+    const ticketsToInsert = [];
+    items.forEach(item => {
+      for (let i = 0; i < item.quantity; i++) {
+        const qrCode = crypto.randomBytes(6).toString("hex"); // random QR code
+        ticketsToInsert.push({
+          orderId: order._id,
+          userId: order.userId,
+          categoryCode: item.categoryCode,
+          visitDate: order.visitDate,
+          status: "active",
+          qrCode
+        });
+      }
+    });
+
+    if (ticketsToInsert.length > 0) {
+      await Ticket.insertMany(ticketsToInsert);
+    }
 
     // update reservation nếu có
     if (reservation) {

@@ -1,5 +1,6 @@
 // Home.js
 import React, { useState,useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Home.css";
 
 export default function Home() {
@@ -73,8 +74,8 @@ function getImageUrl(t) {
           </p>
 
           <div className="zoo-home__cta-row">
-            <a href="/bookingdate" className="zoo-home__btn zoo-home__btn--primary">Đặt vé ngay</a>
-            <a href="/zooareas" className="zoo-home__btn zoo-home__btn--primary">Khám phá sở thú</a>
+            <Link to="/bookingdate" className="zoo-home__btn zoo-home__btn--primary">Đặt vé ngay</Link>
+            <Link to="/zooareas" className="zoo-home__btn zoo-home__btn--primary">Khám phá sở thú</Link>
           </div>
         </div>
       </section>
@@ -168,7 +169,7 @@ function getImageUrl(t) {
             />
             <div className="cta__text">
               <h3>Tham quan các loài động vật đáng yêu</h3>
-              <a href="/bookingdate" className="btn btn-pill">Đặt vé ngay</a>
+              <Link to="/bookingdate" className="btn btn-pill">Đặt vé ngay</Link>
             </div>
           </div>
         </div>
@@ -178,7 +179,7 @@ function getImageUrl(t) {
         <div className="zoo-home__float-text">
           Đặt lịch tham quan ZozoLand ngay thôi !!!
         </div>
-        <a href="/bookingdate" className="zoo-home__btn-mini">Đặt vé ngay</a>
+        <Link to="/bookingdate" className="zoo-home__btn-mini">Đặt vé ngay</Link>
       </div>
     </div>
   );

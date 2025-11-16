@@ -141,10 +141,21 @@ export default function CheckoutConfirm() {
   try {
     let res, data;
 
+    // ====== MOMO (chèn token vào) ======
     if (selectedPayment === "momo") {
+      const token = localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
+      if (!token) {
+        alert("Bạn phải đăng nhập trước khi thanh toán");
+        navigate("/login"); // chuyển về trang login
+        return;
+      }
+      const user = JSON.parse(localStorage.getItem("authUser") || sessionStorage.getItem("authUser") || "{}");
       res = await fetch(`${API_BASE}/api/payments/momo`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // chỉ thêm mỗi ở đây
+        },
         body: JSON.stringify({ amount: finalTotal, rid }),
       });
     } else if (selectedPayment === "vnpay") {

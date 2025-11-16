@@ -1,7 +1,7 @@
 // Footer.js
 import React from "react";
 import "./Footer.css";
-
+import { Link } from "react-router-dom";
 export default function ZooFooter() {
   return (
     <footer className="zoo-footer">
@@ -64,14 +64,14 @@ export default function ZooFooter() {
         <div className="zoo-footer__container zoo-footer__grid">
           {/* Brand */}
           <div className="zoo-footer__brand">
-            <a href="/" className="zoo-footer__logo">
+            <Link to="/" className="zoo-footer__logo">
               <img src="logo.svg" alt="ZozoLand Logo" />
               {/* <div className="zoo-footer__logo-mark">C</div>
               <div className="zoo-footer__logo-text">
                 <strong>Chester</strong>
                 <span>Zoo</span>
               </div> */}
-            </a>
+            </Link>
 
             <ul className="zoo-footer__social">
               <li><a href="#"><SvgX /></a></li>

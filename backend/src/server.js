@@ -17,6 +17,9 @@ import ticketCatalogRoutes from "./routes/ticketCatalog.routes.js";
 import userRoutes from "./routes/userinfo.route.js";
 import discountRoutes from "./routes/discount.routes.js";
 // ===== EXPRESS APP SETUP =====
+import momo from "./routes/payments/Momo.js";
+import vnpay from "./routes/payments/VNPay.js";
+import momoNotify from "./routes/payments/momoNotify.js";
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -37,6 +40,9 @@ app.use("/api/reservations", reservationRoutes);
 app.use("/api/tickets", ticketCatalogRoutes);
 app.use("/api/userinfo", userRoutes);
 app.use("/api/discounts", discountRoutes);
+app.use("/api/payments/momo", momo);
+app.use("/api/payments/vnpay", vnpay); 
+app.use("/api/payments/momo", momoNotify);
 // ===== START SERVER =====
 const PORT = process.env.PORT || 4000;
 connectDB().then(() =>
