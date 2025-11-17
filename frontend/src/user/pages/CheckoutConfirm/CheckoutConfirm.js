@@ -134,6 +134,56 @@ export default function CheckoutConfirm() {
     setSelectedPayment(method);
   };
 
+  // --- Handle thanh toán ---
+  const handlePayment = async () => {
+  if (!selectedPayment) return alert("Vui lòng chọn phương thức thanh toán");
+
+  try {
+    let res, data;
+
+    // ====== MOMO (chèn token vào) ======
+    if (selectedPayment === "momo") {
+      const token = localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
+      if (!token) {
+        alert("Bạn phải đăng nhập trước khi thanh toán");
+        navigate("/login"); // chuyển về trang login
+        return;
+      }
+      const user = JSON.parse(localStorage.getItem("authUser") || sessionStorage.getItem("authUser") || "{}");
+      res = await fetch(`${API_BASE}/api/payments/momo`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`, // chỉ thêm mỗi ở đây
+        },
+        body: JSON.stringify({ amount: finalTotal, rid }),
+      });
+    } else if (selectedPayment === "vnpay") {
+      res = await fetch(`${API_BASE}/api/payments/vnpay`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: finalTotal, rid }),
+      });
+    } else if (selectedPayment === "zalopay") {
+      res = await fetch(`${API_BASE}/api/payments/zalopay`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: finalTotal, rid }),
+      });
+    }
+
+    data = await res.json();
+    if (!res.ok) throw new Error(data.message || "Không tạo được link thanh toán");
+
+    // redirect tới link thanh toán của MoMo/VNPay/ZaloPay
+    window.location.href = data.payUrl;
+
+  } catch (err) {
+    alert(err.message);
+  }
+};
+
+
   return (
     <>
       <SiteHeader />
@@ -245,6 +295,7 @@ export default function CheckoutConfirm() {
                   selectedPayment ? "active" : "disabled"
                 }`}
                 disabled={!selectedPayment}
+                onClick={handlePayment}
               >
                 THANH TOÁN
               </button>
