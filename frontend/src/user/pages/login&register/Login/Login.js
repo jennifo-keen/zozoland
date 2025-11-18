@@ -1,9 +1,11 @@
 import React, { useMemo, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import SiteHeader from "../../../components/SiteHeader/SiteHeader";
+import { useUserAuth } from "../../../../user/context/UserAuthContext";
 import "./Login.css";
 
 export default function Login() {
+  const { user, logout } = useUserAuth();
   const navigate = useNavigate();
 
   const API_BASE = useMemo(
@@ -64,9 +66,8 @@ export default function Login() {
 
       // Lưu token & user
       if (data.token) {
-        const storage = form.remember ? localStorage : sessionStorage;
-        storage.setItem("authToken", data.token);
-        storage.setItem("authUser", JSON.stringify(data.user || {}));
+        localStorage.setItem("authToken", data.token);
+        localStorage.setItem("authUser", JSON.stringify(data.user || {}));
       }
 
       navigate("/"); // đổi route nếu cần
