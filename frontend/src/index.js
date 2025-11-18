@@ -3,13 +3,13 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import RouterCustom from "./router/Router";
 import "./index.css";
-import { AuthProvider } from "./admin/context/authContext";
+import { UserAuthProvider } from "./user/context/UserAuthContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <BrowserRouter>
-    <AuthProvider>
+    <UserAuthProvider>
       <RouterCustom />
-    </AuthProvider>
+    </UserAuthProvider>
   </BrowserRouter>
 );

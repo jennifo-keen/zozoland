@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";    // 🔥 THÊM
 import "./Header.css";
 
 // 🔥 Chỉ đọc từ localStorage (không dùng sessionStorage nữa)
+
 function readAuth() {
   const rawUser = localStorage.getItem("authUser");
   const token = localStorage.getItem("authToken");
