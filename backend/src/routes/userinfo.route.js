@@ -2,6 +2,7 @@ import express from "express";
 import { User } from "../model/schemas/User.js";
 import { Order } from "../model/schemas/Order.js";
 import { Ticket } from "../model/schemas/Ticket.js";
+import bcrypt from "bcrypt";
 
 const router = express.Router();
 
@@ -66,5 +67,38 @@ router.get("/:id/orders/:orderId/tickets", async (req, res) => {
   }
 });
 
+// PUT /api/users/:id/changepassword → đổi mật khẩu
+router.put("/:id/changepassword", async (req, res) => {
+  try {
+    const { currentPassword, newPassword, confirmPassword } = req.body;
+
+    if (!currentPassword || !newPassword || !confirmPassword) {
+      return res.status(400).json({ error: "Thiếu thông tin mật khẩu" });
+    }
+
+    if (newPassword !== confirmPassword) {
+      return res.status(400).json({ error: "Mật khẩu mới không khớp" });
+    }
+
+    const user = await User.findById(req.params.id);
+    if (!user) return res.status(404).json({ error: "Không tìm thấy người dùng" });
+
+    const isMatch = await bcrypt.compare(currentPassword, user.passwordHash);
+    if (!isMatch) {
+      return res.status(401).json({ error: "Mật khẩu hiện tại không đúng" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    user.passwordHash = hashedPassword;
+    await user.save();
+
+    res.json({ message: "Mật khẩu đã được cập nhật thành công" });
+  } catch (err) {
+    console.error("Lỗi khi đổi mật khẩu:", err);
+    res.status(500).json({ error: "Lỗi server" });
+  }
+});
 
 export default router;
