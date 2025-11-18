@@ -2,7 +2,7 @@ import express from "express";
 import { User } from "../model/schemas/User.js";
 import { Order } from "../model/schemas/Order.js";
 import { Ticket } from "../model/schemas/Ticket.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 
 const router = express.Router();
 
