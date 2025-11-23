@@ -46,6 +46,7 @@ export default function Profile({ data, onUpdate }) {
   if (!data) return <p>Đang tải thông tin...</p>;
 
   return (
+
     <div className="profile-box">
       <h2>Thông Tin Cá Nhân</h2>
       <p className="subtitle">Quản lý thông tin tài khoản của bạn</p>

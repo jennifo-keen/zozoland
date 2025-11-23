@@ -5,6 +5,7 @@ import TicketList from "./Ticketlist/TicketList.js";
 import LogoutConfirm from "./LogoutConfirm.js";
 import EditPassword from "./EditPassword.js";
 import DeleteAccount from "./DeleteAccount.js";
+import SiteHeader from "../../components/SiteHeader/SiteHeader.js";
 import "./user.css";
 
 export default function UserDashboard() {
@@ -42,6 +43,8 @@ export default function UserDashboard() {
   }, [activeTab, userId]);
 
   return (
+    <>
+    <SiteHeader />
     <div className="user-dashboard">
       {/* Thanh điều hướng chính */}
       <div className="dashboard-nav">
@@ -76,5 +79,6 @@ export default function UserDashboard() {
         {activeTab === "logout" && <LogoutConfirm />}
       </div>
     </div>
+    </>
   );
 }

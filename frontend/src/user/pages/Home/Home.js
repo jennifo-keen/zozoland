@@ -1,11 +1,11 @@
 // Home.js
 import React, { useState,useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "./Home.css";
 
 export default function Home() {
   const heroUrl = process.env.PUBLIC_URL + '/hero/hero_home.png';
-  
+  const navigate = useNavigate();
   const [showVideo, setShowVideo] = useState(false);
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -51,7 +51,16 @@ function cardClassByCode(code) {
     default: return "";
   }
 }
-
+const handleBookingClick = (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem("authToken");
+  if (!token) {
+    alert("Vui lòng đăng nhập để đặt vé!");
+    navigate("/login"); // chuyển hướng sang trang đăng nhập
+  } else {
+    navigate("/bookingdate"); // nếu đã đăng nhập thì đi tiếp
+  }
+};
 function getImageUrl(t) {
   return t?.image || "/img/placeholder-ticket.jpg";
 }
@@ -74,7 +83,7 @@ function getImageUrl(t) {
           </p>
 
           <div className="zoo-home__cta-row">
-            <Link to="/bookingdate" className="zoo-home__btn zoo-home__btn--primary">Đặt vé ngay</Link>
+            <Link onClick={handleBookingClick} className="zoo-home__btn zoo-home__btn--primary">Đặt vé ngay </Link>
             <Link to="/zooareas" className="zoo-home__btn zoo-home__btn--primary">Khám phá sở thú</Link>
           </div>
         </div>
@@ -169,7 +178,7 @@ function getImageUrl(t) {
             />
             <div className="cta__text">
               <h3>Tham quan các loài động vật đáng yêu</h3>
-              <Link to="/bookingdate" className="btn btn-pill">Đặt vé ngay</Link>
+              <Link onClick={handleBookingClick} className="btn btn-pill">Đặt vé ngay </Link>
             </div>
           </div>
         </div>
@@ -179,7 +188,12 @@ function getImageUrl(t) {
         <div className="zoo-home__float-text">
           Đặt lịch tham quan ZozoLand ngay thôi !!!
         </div>
-        <Link to="/bookingdate" className="zoo-home__btn-mini">Đặt vé ngay</Link>
+        <Link
+          onClick={handleBookingClick}
+          className="zoo-home__btn-mini"
+        >
+          Đặt vé ngay
+        </Link>
       </div>
     </div>
   );

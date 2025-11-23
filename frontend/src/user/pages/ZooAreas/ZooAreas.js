@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import "./ZooAreas.css";
 
 export default function ZooAreas() {
@@ -58,6 +58,16 @@ export default function ZooAreas() {
   const getAnimalImage = (a) =>
     a?.thumbnail || a?.heroImage || `${process.env.PUBLIC_URL}/img/placeholder.jpg`;
 
+const handleBookingClick = (e) => {
+  e.preventDefault();
+  const token = localStorage.getItem("authToken");
+  if (!token) {
+    alert("Vui lòng đăng nhập để đặt vé!");
+    navigate("/login"); // chuyển hướng sang trang đăng nhập
+  } else {
+    navigate("/bookingdate"); // nếu đã đăng nhập thì đi tiếp
+  }
+};
   return (
     <main className="zlzone-page">
       {/* HERO */}
@@ -67,7 +77,7 @@ export default function ZooAreas() {
         <div className="zlzone-hero__inner">
           <h1 className="zlzone-hero__title">CHI TIẾT CÁC KHU VỰC</h1>
           <p className="zlzone-hero__subtitle">Ngôi nhà của muôn loài</p>
-          <button className="zlzone-btn zlzone-btn--primary">Đặt vé ngay</button>
+          <Link onClick={handleBookingClick} className="zlzone-btn zlzone-btn--primary">Đặt vé ngay </Link>
         </div>
       </section>
 
