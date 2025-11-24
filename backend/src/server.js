@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
-import { connectDB } from "./config/db.js"; // ⚠️ đường dẫn đã chỉnh lại 1 cấp
+import { connectDB } from "./config/db.js"; 
 import { User } from "./model/schemas/User.js";
 import "./model/schemas/Exhibit.js"
 
@@ -16,6 +16,10 @@ import reservationRoutes from "./routes/reservation.routes.js";
 import ticketCatalogRoutes from "./routes/ticketCatalog.routes.js";
 import userRoutes from "./routes/userinfo.route.js";
 import discountRoutes from "./routes/discount.routes.js";
+
+//admin 
+import adminDashboardRoutes from "./admin/routers/dashboardRoutes.js";
+import adminAuthRoutes from "./admin/routers/authRoutes.js";
 // ===== EXPRESS APP SETUP =====
 import momo from "./routes/payments/Momo.js";
 import vnpay from "./routes/payments/VNPay.js";
@@ -43,6 +47,10 @@ app.use("/api/discounts", discountRoutes);
 app.use("/api/payments/momo", momo);
 app.use("/api/payments/vnpay", vnpay); 
 app.use("/api/payments/momo", momoNotify);
+
+// Admin routes
+app.use("/api/admin", adminDashboardRoutes);
+app.use("/api/admin", adminAuthRoutes);
 // ===== START SERVER =====
 const PORT = process.env.PORT || 4000;
 connectDB().then(() =>
