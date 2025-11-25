@@ -8,3 +8,4 @@ export async function findExhibitByIdOrSlug(idOrSlug) {
   if (byId) return byId;
   return Exhibit.findOne({ slug: idOrSlug });
 }
+
