@@ -104,7 +104,7 @@ export default function Header() {
         <div className="header-logo">
           <img
             style={{width: '100px', height: '100px'}}
-            onClick={() => navigate("/admin/dashboard")}
+            onClick={() => navigate("/admin")}
             src="/logo_white.svg"
             alt="ZozoLand Admin Logo"
           />
