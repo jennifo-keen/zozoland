@@ -1,12 +1,21 @@
-import { Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import AdminLogin from "../admin/pages/Login/Login";
 import Home_Admin from "../admin/pages/Home_admin/Home_admin";
+import Layout_admin from "../admin/components/Layout/Layout_admin";
+import ManageAdmin from "../admin/pages/Admin/ManageAdmin"
+import CreateAdmin from "../admin/pages/Admin/CreateAdmin"
+import AdminDetail from "../admin/pages/Admin/AdminDetail"
 
 export function AdminRoutes() {
   return (
     <>
       <Route path="/admin/login" element={<AdminLogin />} />
-      <Route path="/admin" element={<Home_Admin />} />
+      <Route path="/admin" element={<Layout_admin />}>
+        <Route index element={<Home_Admin />} />
+        <Route path="admin" element={<ManageAdmin />} />
+        <Route path="admin/add" element={<CreateAdmin />} />
+        <Route path="admin/:id" element={<AdminDetail />} />
+      </Route>
     </>
   );
 }

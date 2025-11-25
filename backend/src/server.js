@@ -19,7 +19,7 @@ import discountRoutes from "./routes/discount.routes.js";
 
 //admin 
 import adminDashboardRoutes from "./admin/routers/dashboardRoutes.js";
-import adminAuthRoutes from "./admin/routers/authRoutes.js";
+import adminAuthRoutes from "./admin/routers/adminUser.routes.js";
 // ===== EXPRESS APP SETUP =====
 import momo from "./routes/payments/Momo.js";
 import vnpay from "./routes/payments/VNPay.js";

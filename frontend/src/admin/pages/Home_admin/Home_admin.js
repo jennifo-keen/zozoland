@@ -29,7 +29,7 @@ export default function Dashboard() {
       <div className="grid">
         <div className="card">
           <h3>Doanh thu hôm nay</h3>
-          <p>{stats?.dailyRevenue?.toLocaleString() || "0"} VND</p>
+          <p> VND</p>
         </div>
 
         <div className="card">
@@ -39,7 +39,7 @@ export default function Dashboard() {
 
         <div className="card">
           <h3>Doanh thu tháng này</h3>
-          <p>{stats.monthlyRevenue.toLocaleString()} VND</p>
+          <p> VND</p>
         </div>
 
         <div className="card">

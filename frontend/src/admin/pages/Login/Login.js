@@ -1,30 +1,22 @@
 import { useState } from "react";
 import "./Login.css";
+import { useAuth } from "../../context/authContext";
 
 export default function AdminLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const { login } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("http://localhost:4000/api/admin/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
-    });
-
-    const data = await res.json();
-
-    if (!res.ok) {
-      setError(data.message);
+    const result = await login(email, password);
+    if (!result.success) {
+      setError(result.error || "Đăng nhập thất bại");
       return;
     }
-
-    localStorage.setItem("authToken", data.token);
-
-    window.location.href = "/admin"; // Redirect
+    window.location.href = "/admin";
   };
 
   return (
