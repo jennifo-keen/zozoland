@@ -34,8 +34,7 @@ async function countActiveHolds(visitDateUtcStart) {
 }
 
 /**
- * POST /api/reservations/hold
- * -> tạo reservation "holding" 5 phút nếu còn chỗ
+ * POST /api/reservations/hold giữ chỗ 5p
  */
 router.post("/hold", async (req, res) => {
   try {
