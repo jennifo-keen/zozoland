@@ -22,7 +22,7 @@ export default function CheckoutConfirm() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  // --- Fetch reservation ---
+
   useEffect(() => {
     if (!rid) return;
     (async () => {
@@ -63,7 +63,7 @@ export default function CheckoutConfirm() {
     })();
   }, [rid]);
 
-  // --- Countdown timer ---
+  // Đếm ngược thời gian
   useEffect(() => {
     if (!expiresAt) return;
     const timer = setInterval(() => {
@@ -77,7 +77,7 @@ export default function CheckoutConfirm() {
     return () => clearInterval(timer);
   }, [expiresAt]);
 
-  // --- Discount logic ---
+  // logic của mã giảm giá
   const total = items.reduce((sum, i) => sum + i.price * (i.qty || 1), 0);
   const finalTotal = Math.max(0, total - discount);
 
@@ -102,14 +102,14 @@ export default function CheckoutConfirm() {
     const sec = s % 60;
     return `${m.toString().padStart(2, "0")}:${sec.toString().padStart(2, "0")}`;
   };
-  // --- Handle xóa vé ---
+  // Handle xóa vé 
   const handleRemoveItem = async (id) => {
     const updated = items.filter((i) => i.id !== id);
     setItems(updated);
 
     if (!rid) return;
 
-    // Nếu vẫn còn vé => cập nhật lại quantities trong DB
+    // Nếu vẫn còn vé thì cập nhật lại quantities trong DB
     if (updated.length > 0) {
       const newQuantities = {
         adult: updated.find((i) => i.id === "adult")?.qty || 0,
@@ -123,18 +123,18 @@ export default function CheckoutConfirm() {
         body: JSON.stringify({ quantities: newQuantities }),
       });
     } else {
-      // Không còn vé nào → hủy luôn reservation
+      // Không còn vé nào thì hủy luôn reservation
       await fetch(`${API_BASE}/api/reservations/cancel/${rid}`, { method: "PATCH" });
     }
   };
 
 
-  // --- Handle chọn phương thức thanh toán ---
+  // Handle chọn phương thức thanh toán ---
   const handleSelectPayment = (method) => {
     setSelectedPayment(method);
   };
 
-  // --- Handle thanh toán ---
+  // Handle thanh toán 
   const handlePayment = async () => {
   if (!selectedPayment) return alert("Vui lòng chọn phương thức thanh toán");
 
