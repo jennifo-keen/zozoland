@@ -5,6 +5,7 @@ import Layout_admin from "../admin/components/Layout/Layout_admin";
 import ManageAdmin from "../admin/pages/Admin/ManageAdmin"
 import CreateAdmin from "../admin/pages/Admin/CreateAdmin"
 import AdminDetail from "../admin/pages/Admin/AdminDetail"
+import AdminReport from "../admin/pages/Report/Report"
 
 export function AdminRoutes() {
   return (
@@ -15,6 +16,7 @@ export function AdminRoutes() {
         <Route path="admin" element={<ManageAdmin />} />
         <Route path="admin/add" element={<CreateAdmin />} />
         <Route path="admin/:id" element={<AdminDetail />} />
+        <Route path="report" element={<AdminReport />} />
       </Route>
     </>
   );
