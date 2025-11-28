@@ -4,9 +4,11 @@ import {
 } from "recharts";
 
 const Report = () => {
-  const [dailyData, setDailyData] = useState([]);
-  const [monthlyData, setMonthlyData] = useState([]);
+  const [fullDailyData, setFullDailyData] = useState([]);
+  const [fullMonthlyData, setFullMonthlyData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedMonth, setSelectedMonth] = useState(new Date().toISOString().slice(0, 7)); 
+  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear().toString());    
 
   const formatVND = (value) =>
     new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format(value);
@@ -22,11 +24,11 @@ const Report = () => {
 
         if (!resDaily.ok || !resMonthly.ok) throw new Error("Lỗi kết nối API");
 
-        const daily = await resDaily.json();
-        const monthly = await resMonthly.json();
+        const daily = await resDaily.json(); 
+        const monthly = await resMonthly.json(); 
 
-        setDailyData(daily);
-        setMonthlyData(monthly);
+        setFullDailyData(daily);
+        setFullMonthlyData(monthly);
       } catch (error) {
         console.error("Fetch error:", error);
       } finally {
@@ -36,19 +38,40 @@ const Report = () => {
 
     fetchData();
   }, []);
+  const filteredDailyData = fullDailyData.filter(item => item.date.startsWith(selectedMonth));
+  const filteredMonthlyData = fullMonthlyData.filter(item => item.month.startsWith(selectedYear));
+  const uniqueMonths = [...new Set(fullDailyData.map(item => item.date.slice(0, 7)))].sort().reverse();
+  const uniqueYears = [...new Set(fullMonthlyData.map(item => item.month.slice(0, 4)))].sort().reverse();
 
   if (loading) return <div className="p-5 text-center">Đang tải dữ liệu báo cáo...</div>;
 
   return (
-    <div style={{ padding: "30px", maxWidth: "1200px", margin: "0 auto" }}>
-      <h1 style={{ textAlign: "center", marginBottom: "40px", color: "#333" }}>
-        Báo Cáo Doanh Thu (Đơn đã thanh toán)
+    <div style={{ padding: "30px", maxWidth: "1200px", margin: "0 auto", fontFamily: "Arial, sans-serif" }}>
+      <h1 style={{ textAlign: "center", marginBottom: "40px", color: "#ffffff" }}>
+        Báo Cáo Doanh Thu
       </h1>
       <div style={styles.chartContainer}>
-        <h3 style={styles.chartTitle}>Doanh Thu Theo Ngày</h3>
+        <div style={styles.headerRow}>
+          <h3 style={styles.chartTitle}>Doanh Thu Chi Tiết Theo Ngày</h3>
+          <div style={styles.filterGroup}>
+            <label>Chọn tháng: </label>
+            <select 
+              style={styles.select} 
+              value={selectedMonth} 
+              onChange={(e) => setSelectedMonth(e.target.value)}
+            >
+              {!uniqueMonths.includes(selectedMonth) && <option value={selectedMonth}>{selectedMonth}</option>}
+              
+              {uniqueMonths.map(month => (
+                <option key={month} value={month}>{month}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
         <div style={{ width: "100%", height: 350 }}>
           <ResponsiveContainer>
-            <BarChart data={dailyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <BarChart data={filteredDailyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="date" />
               <YAxis />
@@ -57,14 +80,33 @@ const Report = () => {
               <Bar dataKey="revenue" name="Doanh Thu (VND)" fill="#4F46E5" radius={[4, 4, 0, 0]} barSize={50} />
             </BarChart>
           </ResponsiveContainer>
+          {filteredDailyData.length === 0 && (
+            <p style={{ textAlign: "center", color: "#999", marginTop: "-100px" }}>Không có dữ liệu cho tháng này</p>
+          )}
         </div>
       </div>
-
       <div style={styles.chartContainer}>
-        <h3 style={styles.chartTitle}>Doanh Thu Theo Tháng</h3>
+        <div style={styles.headerRow}>
+          <h3 style={styles.chartTitle}>Tổng Quan Doanh Thu Theo Năm</h3>
+          <div style={styles.filterGroup}>
+            <label>Chọn năm: </label>
+            <select 
+              style={styles.select} 
+              value={selectedYear} 
+              onChange={(e) => setSelectedYear(e.target.value)}
+            >
+               {!uniqueYears.includes(selectedYear) && <option value={selectedYear}>{selectedYear}</option>}
+
+              {uniqueYears.map(year => (
+                <option key={year} value={year}>{year}</option>
+              ))}
+            </select>
+          </div>
+        </div>
+
         <div style={{ width: "100%", height: 350 }}>
           <ResponsiveContainer>
-            <BarChart data={monthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+            <BarChart data={filteredMonthlyData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" />
               <YAxis />
@@ -73,12 +115,14 @@ const Report = () => {
               <Bar dataKey="revenue" name="Doanh Thu (VND)" fill="#10B981" radius={[4, 4, 0, 0]} barSize={60} />
             </BarChart>
           </ResponsiveContainer>
+           {filteredMonthlyData.length === 0 && (
+            <p style={{ textAlign: "center", color: "#999", marginTop: "-100px" }}>Không có dữ liệu cho năm này</p>
+          )}
         </div>
       </div>
     </div>
   );
 };
-
 const styles = {
   chartContainer: {
     backgroundColor: "#fff",
@@ -88,11 +132,34 @@ const styles = {
     marginBottom: "40px",
     border: "1px solid #e5e7eb"
   },
-  chartTitle: {
+  headerRow: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginBottom: "20px",
-    color: "#4b5563",
     borderBottom: "2px solid #f3f4f6",
     paddingBottom: "10px"
+  },
+  chartTitle: {
+    margin: 0,
+    color: "#000",
+  },
+  filterGroup: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    fontSize: "14px",
+    fontWeight: "bold",
+    color: "#000"
+  },
+  select: {
+    padding: "6px 12px",
+    borderRadius: "6px",
+    border: "1px solid #d1d5db",
+    fontSize: "14px",
+    outline: "none",
+    cursor: "pointer",
+    backgroundColor: "#f9fafb"
   }
 };
 
