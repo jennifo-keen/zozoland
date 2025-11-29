@@ -1,5 +1,5 @@
-import { embedText } from "../services/embedding";
-import { Embedding } from "../../models/Embedding.js";
+import { embedText } from "../services/embedding.js";
+import { Embedding } from "../../model/schemas/Embeddings.js";
 
 function cosineSimilarity(a, b) {
     const dot = a.reduce((sum, val, i) => sum + val * b[i], 0);
@@ -12,23 +12,30 @@ export async function retrieveContext(question, topK = 10) {
     const queryVec = await embedText(question);
 
 
-    const pricePattern = /giá|vé|bao nhiêu|price/i;
-    const locationPattern = /khu vực|chi nhánh|chỗ|branch|province/i;
+    const pricePattern = /(giá|vé|bao nhiêu|price|ticket)/i;
+    const animalPattern = /(động vật|con gì|animal|loài|species|sống ở đâu|ăn gì|nặng|dài|iucn)/i;
+    const exhibitPattern = /(khu trưng bày|exhibit|khu vực|ở đâu|zone|khu nào)/i;
 
-    let embeddings;
+    let filter = {};
 
     if (pricePattern.test(question)) {
-        embeddings = await Embedding.find({
-            "metadata.collection": "ticketTypes"
-        });
+        // hỏi vé
+        filter = { "metadata.collection": "ticketCategories" };
 
-    } else if (locationPattern.test(question)) {
-        embeddings = await Embedding.find({
-            "metadata.collection": { $in: ["provinces", "branches"] }
-        });
+    } else if (animalPattern.test(question)) {
+        // hỏi động vật
+        filter = { "metadata.collection": "animals" };
+
+    } else if (exhibitPattern.test(question)) {
+        // hỏi khu trưng bày
+        filter = { "metadata.collection": "exhibits" };
+
     } else {
-        embeddings = await Embedding.find({});
+        // fallback: tìm toàn bộ
+        filter = {};
     }
+
+    const embeddings = await Embedding.find(filter);
 
     const scored = embeddings.map(doc => {
         const score = cosineSimilarity(queryVec, doc.embedding);
@@ -36,5 +43,6 @@ export async function retrieveContext(question, topK = 10) {
     });
 
     scored.sort((a, b) => b.score - a.score);
+
     return scored.slice(0, topK);
 }

@@ -20,6 +20,9 @@ import discountRoutes from "./routes/discount.routes.js";
 //admin 
 import adminDashboardRoutes from "./admin/routers/dashboardRoutes.js";
 import adminAuthRoutes from "./admin/routers/adminUser.routes.js";
+import orderRoutes from "./admin/routers/orderRoutes.js";
+import AdminuserRoutes from "./admin/routers/UserRoutes.js";
+import Admindiscount from "./admin/routers/ADdiscountRoutes.js";
 // ===== EXPRESS APP SETUP =====
 import momo from "./routes/payments/Momo.js";
 import vnpay from "./routes/payments/VNPay.js";
@@ -56,8 +59,13 @@ app.use("/api/payments/momo", momoNotify);
 app.use("/api/admin", adminDashboardRoutes);
 app.use("/api/admin", adminAuthRoutes);
 
+
 app.use("/api/ai", aiRoute);
 
+
+app.use("/api/admin/discount", Admindiscount);
+app.use("/api/admin/order",orderRoutes);
+app.use("/api/admin/user",AdminuserRoutes);
 // ===== START SERVER =====
 
 const PORT = process.env.PORT || 4000;

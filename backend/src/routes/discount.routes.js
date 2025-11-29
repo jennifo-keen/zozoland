@@ -2,8 +2,7 @@ import express from "express";
 import { DiscountCode } from "../model/schemas/DiscountCode.js";
 const router = express.Router();
 
-/**
- * GET /api/discounts/validate?code=ZOO10K&amount=120000
+/* GET /api/discounts/validate?code=ZOO10K&amount=120000
  */
 router.get("/validate", async (req, res) => {
   try {

@@ -1,6 +1,6 @@
 // routes/animalRoutes.js
 import express from "express";
-import mongoose from "mongoose";        // ⬅️ THÊM DÒNG NÀY
+import mongoose from "mongoose";       
 import { Animal } from "../model/schemas/Animals.js";
 
 const router = express.Router();
@@ -19,7 +19,7 @@ router.get("/random", async (req, res) => {
       { $sample: { size: limit } }
     ]);
 
-    // Lấy lại theo _id để populate (tùy bạn, có thể bỏ nếu không cần)
+    // Lấy lại theo _id để populate
     const ids = sampled.map(a => a._id);
     const animals = await Animal.find({ _id: { $in: ids } })
       .populate("exhibitId", "slug name")

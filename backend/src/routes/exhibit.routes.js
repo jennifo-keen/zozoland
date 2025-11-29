@@ -54,9 +54,9 @@ router.get("/:idOrSlug/animals", async (req, res) => {
     const filter = {
       isActive: true,
       $or: [
-        { exhibit: ex._id },                 // nếu bạn dùng Animal.exhibit (ObjectId)
-        { exhibitId: ex._id },               // nếu bạn dùng Animal.exhibitId (ObjectId)  ← TRƯỜNG HỢP CỦA BẠN
-        { exhibits: { $in: [ex._id] } },     // nếu bạn lưu mảng exhibits: [ObjectId]
+        { exhibit: ex._id },                 
+        { exhibitId: ex._id },               
+        { exhibits: { $in: [ex._id] } },     
       ],
     };
 
@@ -66,7 +66,6 @@ router.get("/:idOrSlug/animals", async (req, res) => {
       .limit(limit)
       .lean();
 
-    // Chuẩn hoá trả về exhibitId cho FE
     const mapped = animals.map(a => ({
       ...a,
       exhibitId: a.exhibit ?? a.exhibitId ?? undefined

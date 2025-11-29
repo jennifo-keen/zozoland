@@ -18,7 +18,6 @@ router.post("/register", async (req, res) => {
   try {
     const { fullName, username, email, password } = req.body || {};
 
-    // ----- Validate cơ bản -----
     if (
       !fullName?.trim() ||
       !username?.trim() ||
@@ -49,11 +48,11 @@ router.post("/register", async (req, res) => {
         .json({ success: false, message: "Email không hợp lệ." });
     }
 
-    // ----- Chuẩn hoá -----
+    // Chuẩn hoá
     const uname = String(username).toLowerCase().trim();
     const mail = String(email).toLowerCase().trim();
 
-    // ----- Kiểm tra trùng username/email (để trả thông báo rõ ràng) -----
+    // Kiểm tra trùng username/email (để trả thông báo rõ ràng) -----
     const existing = await User.findOne({
       $or: [{ username: uname }, { email: mail }],
     }).select("_id username email");
@@ -66,10 +65,10 @@ router.post("/register", async (req, res) => {
         .json({ success: false, message: `${dupField} đã tồn tại.` });
     }
 
-    // ----- Băm mật khẩu -----
+    // Băm mật khẩu
     const passwordHash = await bcrypt.hash(password, 10);
 
-    // ----- Tạo user -----
+    // Tạo user
     const user = await User.create({
       fullName: fullName.trim(),
       username: uname,
@@ -77,8 +76,6 @@ router.post("/register", async (req, res) => {
       passwordHash,
     });
 
-    // (Tuỳ chọn) Auto-login sau đăng ký
-    // const token = signToken(user);
 
     return res.status(201).json({
       success: true,
@@ -89,7 +86,6 @@ router.post("/register", async (req, res) => {
         username: user.username,
         email: user.email,
       },
-      // token,
     });
   } catch (err) {
     // Duplicate key từ unique index của Mongo

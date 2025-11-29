@@ -21,9 +21,9 @@ export default function CheckoutResult() {
 
   const handleBack = () => {
     if (status === "success") {
-      navigate("/"); // trang thành công
+      navigate("/"); // Thành công
     } else {
-      navigate(`/checkout?rid=${rid}`); // quay lại giỏ hàng
+      navigate(`/checkout?rid=${rid}`); // Thất bại thì quay lại trang checkout
     }
   };
 

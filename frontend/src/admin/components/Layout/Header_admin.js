@@ -26,18 +26,15 @@ export default function Header() {
         ],
       },
       {
-        parent: "Quản lý đơn hàng",
+        parent: "Quản lý Mã giảm giá",
         children: [
-          { name: "Danh sách đơn hàng", link: "/admin/orders/list" },
-          { name: "Báo cáo", link: "/admin/orders/report" },
+          { name: "Danh sách đơn hàng", link: "/admin/discount" },
         ],
       },
       {
         parent: "Quản lý người dùng",
         children: [
-          { name: "Danh sách người dùng", link: "/admin/users/list" },
-          { name: "Người dùng mới", link: "/admin/users/add" },
-          { name: "Báo cáo", link: "/admin/users/report" },
+          { name: "Danh sách người dùng", link: "/admin/user/list" },
         ],
       },
       {
@@ -50,15 +47,13 @@ export default function Header() {
       {
         parent: "Quản lý người dùng",
         children: [
-          { name: "Danh sách người dùng", link: "/admin/users/list" },
-          { name: "Người dùng mới", link: "/admin/users/add" },
+          { name: "Danh sách người dùng", link: "/admin/user/list" },
         ],
       },
       {
         parent: "Báo cáo & thống kê",
         children: [
           { name: "Doanh thu", link: "/admin/report/revenue" },
-          { name: "Người dùng hoạt động", link: "/admin/report/active-users" },
         ],
       },
     ],
@@ -67,7 +62,7 @@ export default function Header() {
       {
         parent: "Người dùng",
         children: [
-          { name: "Danh sách người dùng", link: "/admin/users/list" },
+          { name: "Danh sách người dùng", link: "/admin/user/list" },
         ],
       },
     ],
@@ -122,7 +117,6 @@ export default function Header() {
                   <img className={`chevron ${openNav === index ? "rotate" : ""}`} style={{height: '20px', width: '20px'}} src='/arrow.png' />
                 </button>
 
-                {/* Dropdown */}
                 {openNav === index && (
                   <ul className="dropdown-menu">
                     {item.children.map((child, childIndex) => (
@@ -142,7 +136,6 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* User Menu */}
         <div className="header-user" ref={userMenuRef}>
           <button
             className="user-button"

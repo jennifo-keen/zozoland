@@ -70,7 +70,7 @@ export default function Home() {
   return (
     <div className="zooHomeNew-home">
 
-      {/* Hero */}
+      {/* ảnh chính */}
       <section className="zooHomeNew-hero" id="visit" style={{ '--hero-image': `url(${heroUrl})` }}>
         <div className="zooHomeNew-hero-birds" aria-hidden="true">
           <img
@@ -126,7 +126,7 @@ export default function Home() {
         )}
       </section>
 
-      {/* Pricing */}
+      {/* Vé */}
       <section className="zooHomeNew-pricing" id="book" aria-labelledby="pricingTitle">
         <div className="container">
           <h2 id="pricingTitle" className="zooHomeNew-section-title">
@@ -170,7 +170,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA banner */}
+      {/* banner dưới cùng */}
       <section className="zooHomeNew-cta">
         <div className="container">
           <div className="zooHomeNew-cta-box">
@@ -187,7 +187,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Floating booking button */}
+      {/* nút đặt vé flex */}
       <div className="zooHomeNew-float-book" role="region" aria-label="Đặt lịch tham quan">
         <div className="zooHomeNew-float-text">
           Đặt lịch tham quan ZozoLand ngay thôi !!!
