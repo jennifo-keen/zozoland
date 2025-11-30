@@ -9,35 +9,30 @@ export function UserAuthProvider({ children }) {
 
   // ✅ Lấy lại thông tin từ localStorage khi F5
   useEffect(() => {
-    const storedToken = localStorage.getItem("authToken");
+    const storedToken = localStorage.getItem("userToken");
     const storedUser = localStorage.getItem("authUser");
+
     if (storedToken && storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-        setToken(storedToken);
-      } catch {
-        localStorage.removeItem("authUser");
-        localStorage.removeItem("authToken");
-      }
+      setUser(JSON.parse(storedUser));
+      setToken(storedToken);
     }
     setLoading(false);
   }, []);
 
-  // ✅ Hàm login
   const login = (userData, tokenData) => {
     localStorage.setItem("authUser", JSON.stringify(userData));
-    localStorage.setItem("authToken", tokenData);
+    localStorage.setItem("userToken", tokenData);
     setUser(userData);
     setToken(tokenData);
   };
 
-  // ✅ Hàm logout
   const logout = () => {
     localStorage.removeItem("authUser");
-    localStorage.removeItem("authToken");
+    localStorage.removeItem("userToken");
     setUser(null);
     setToken(null);
   };
+
 
   return (
     <UserAuthContext.Provider value={{ user, token, login, logout, loading }}>
