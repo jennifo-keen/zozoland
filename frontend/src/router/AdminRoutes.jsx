@@ -10,6 +10,9 @@ import AdminDiscount from "../admin/pages/Discount/Discount"
 import AdminDiscountAdd from "../admin/pages/Discount/DiscountAdd"
 import AdminUser from "../admin/pages/User/Userlist"
 import AdminUsermod from "../admin/pages/User/Usermod"
+import AdminTicket from "../admin/pages/Ticket/TicketList"
+import AdminTicketMod from "../admin/pages/Ticket/TicketMod"
+import AdminTicketAdd from "../admin/pages/Ticket/Ticketadd"
 
 export function AdminRoutes() {
   return (
@@ -25,6 +28,9 @@ export function AdminRoutes() {
         <Route path="discount/add" element={<AdminDiscountAdd />} />
         <Route path="user/list" element={<AdminUser />} />
         <Route path="user/mod" element={<AdminUsermod />} />
+        <Route path="ticket" element={<AdminTicket />} />
+        <Route path="ticket/mod" element={<AdminTicketMod />} />
+        <Route path="ticket/add" element={<AdminTicketAdd />} />
       </Route>
     </>
   );

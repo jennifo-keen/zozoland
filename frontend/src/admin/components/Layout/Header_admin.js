@@ -26,15 +26,11 @@ export default function Header() {
         ],
       },
       {
-        parent: "Quản lý Mã giảm giá",
+        parent: "Quản lý",
         children: [
-          { name: "Danh sách đơn hàng", link: "/admin/discount" },
-        ],
-      },
-      {
-        parent: "Quản lý người dùng",
-        children: [
-          { name: "Danh sách người dùng", link: "/admin/user/list" },
+          { name: "Quản lý người dùng", link: "/admin/user/list" },
+          { name: "Quản lý Mã giảm giá", link: "/admin/discount" },
+          { name: "Quản lý vé", link: "/admin/ticket" },
         ],
       },
       {
@@ -53,7 +49,7 @@ export default function Header() {
       {
         parent: "Báo cáo & thống kê",
         children: [
-          { name: "Doanh thu", link: "/admin/report/revenue" },
+          { name: "Doanh thu", link: "/admin/report" },
         ],
       },
     ],
