@@ -21,7 +21,6 @@ export default function ZooAreas() {
     []
   );
 
-  // helpers
   const stripHtml = (html) =>
     typeof html === "string" ? html.replace(/<[^>]*>/g, "").trim() : "";
 
