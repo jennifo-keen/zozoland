@@ -19,10 +19,12 @@
     "mongoose": "^8.19.0",
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^2.2.1",
-    "node-fetch": "^3.3.2",
-    "sharp": "^0.34.5"
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
-    "nodemon": "^3.1.4"
-  }
+    "nodemon": "^3.1.11"
+  },
+  "overrides": {
+  "sharp": "0.34.5"
+}
 }
