@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./ZooAreas.css";
 
 export default function ZooAreas() {
@@ -13,12 +13,7 @@ export default function ZooAreas() {
   const zooareas = process.env.PUBLIC_URL + "/img/Meerkat.png";
   const birds = process.env.PUBLIC_URL + "/img/Hornbill_Birds.png";
 
-  const API_BASE = useMemo(
-    () =>
-      process.env.REACT_APP_API_URL ||
-      "",
-    []
-  );
+  const API_BASE = process.env.REACT_APP_API_URL || "";
 
   console.log(API_BASE)
 
@@ -57,16 +52,16 @@ export default function ZooAreas() {
   const getAnimalImage = (a) =>
     a?.thumbnail || a?.heroImage || `${process.env.PUBLIC_URL}/img/placeholder.jpg`;
 
-const handleBookingClick = (e) => {
-  e.preventDefault();
-  const token = localStorage.getItem("authToken");
-  if (!token) {
-    alert("Vui lòng đăng nhập để đặt vé!");
-    navigate("/login"); 
-  } else {
-    navigate("/bookingdate"); 
-  }
-};
+  const handleBookingClick = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      alert("Vui lòng đăng nhập để đặt vé!");
+      navigate("/login");
+    } else {
+      navigate("/bookingdate");
+    }
+  };
   return (
     <main className="zlzone-page">
       {/* HERO */}
@@ -105,23 +100,23 @@ const handleBookingClick = (e) => {
         <div className="zlzone-shelf__rail">
           {loadingAnimals
             ? animalPlaceholders.map((_, i) => (
-                <article className="zlzone-card is-skeleton" key={`ask-${i}`}>
-                  <div className="zlzone-card__media" />
-                  <div className="zlzone-card__info">
-                    <div className="zlzone-card__name" />
-                    <div className="zlzone-card__sci" />
-                  </div>
-                </article>
-              ))
+              <article className="zlzone-card is-skeleton" key={`ask-${i}`}>
+                <div className="zlzone-card__media" />
+                <div className="zlzone-card__info">
+                  <div className="zlzone-card__name" />
+                  <div className="zlzone-card__sci" />
+                </div>
+              </article>
+            ))
             : animals.map((a) => (
-                <article className="zlzone-card" key={a._id}>
-                  <div className="zlzone-card__media" style={{ backgroundImage: `url(${getAnimalImage(a)})` }} />
-                  <div className="zlzone-card__info">
-                    <div className="zlzone-card__name">{a.commonName}</div>
-                    <div className="zlzone-card__sci">{a.scientificName}</div>
-                  </div>
-                </article>
-              ))}
+              <article className="zlzone-card" key={a._id}>
+                <div className="zlzone-card__media" style={{ backgroundImage: `url(${getAnimalImage(a)})` }} />
+                <div className="zlzone-card__info">
+                  <div className="zlzone-card__name">{a.commonName}</div>
+                  <div className="zlzone-card__sci">{a.scientificName}</div>
+                </div>
+              </article>
+            ))}
         </div>
       </section>
 
@@ -154,9 +149,9 @@ const handleBookingClick = (e) => {
                     <button
                       className="zlzone-btn zlzone-btn--pill"
                       onClick={() => navigate(`/areas/${ex?.slug || ex?._id}`)}
-                      >
-                        Xem chi tiết
-                      </button>
+                    >
+                      Xem chi tiết
+                    </button>
                   )}
                 </div>
               </article>

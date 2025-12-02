@@ -4,8 +4,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import SiteHeader from "../../components/SiteHeader/SiteHeader";
 import "./CheckoutConfirm.css";
 
-const API_BASE =
-  import.meta?.env?.VITE_API_URL || process.env.REACT_APP_API_URL || "";
+const API_BASE = process.env.REACT_APP_API_URL || "";
 
 export default function CheckoutConfirm() {
   const [searchParams] = useSearchParams();
@@ -136,52 +135,52 @@ export default function CheckoutConfirm() {
 
   // Handle thanh toán 
   const handlePayment = async () => {
-  if (!selectedPayment) return alert("Vui lòng chọn phương thức thanh toán");
+    if (!selectedPayment) return alert("Vui lòng chọn phương thức thanh toán");
 
-  try {
-    let res, data;
+    try {
+      let res, data;
 
-    // ====== MOMO (chèn token vào) ======
-    if (selectedPayment === "momo") {
-      const token = localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
-      if (!token) {
-        alert("Bạn phải đăng nhập trước khi thanh toán");
-        navigate("/login"); // chuyển về trang login
-        return;
+      // ====== MOMO (chèn token vào) ======
+      if (selectedPayment === "momo") {
+        const token = localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
+        if (!token) {
+          alert("Bạn phải đăng nhập trước khi thanh toán");
+          navigate("/login"); // chuyển về trang login
+          return;
+        }
+        const user = JSON.parse(localStorage.getItem("authUser") || sessionStorage.getItem("authUser") || "{}");
+        res = await fetch(`${API_BASE}/api/payments/momo`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`, // chỉ thêm mỗi ở đây
+          },
+          body: JSON.stringify({ amount: finalTotal, rid }),
+        });
+      } else if (selectedPayment === "vnpay") {
+        res = await fetch(`${API_BASE}/api/payments/vnpay`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: finalTotal, rid }),
+        });
+      } else if (selectedPayment === "zalopay") {
+        res = await fetch(`${API_BASE}/api/payments/zalopay`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount: finalTotal, rid }),
+        });
       }
-      const user = JSON.parse(localStorage.getItem("authUser") || sessionStorage.getItem("authUser") || "{}");
-      res = await fetch(`${API_BASE}/api/payments/momo`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`, // chỉ thêm mỗi ở đây
-        },
-        body: JSON.stringify({ amount: finalTotal, rid }),
-      });
-    } else if (selectedPayment === "vnpay") {
-      res = await fetch(`${API_BASE}/api/payments/vnpay`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: finalTotal, rid }),
-      });
-    } else if (selectedPayment === "zalopay") {
-      res = await fetch(`${API_BASE}/api/payments/zalopay`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ amount: finalTotal, rid }),
-      });
+
+      data = await res.json();
+      if (!res.ok) throw new Error(data.message || "Không tạo được link thanh toán");
+
+      // redirect tới link thanh toán của MoMo/VNPay/ZaloPay
+      window.location.href = data.payUrl;
+
+    } catch (err) {
+      alert(err.message);
     }
-
-    data = await res.json();
-    if (!res.ok) throw new Error(data.message || "Không tạo được link thanh toán");
-
-    // redirect tới link thanh toán của MoMo/VNPay/ZaloPay
-    window.location.href = data.payUrl;
-
-  } catch (err) {
-    alert(err.message);
-  }
-};
+  };
 
 
   return (
@@ -209,8 +208,8 @@ export default function CheckoutConfirm() {
                       <span className="zozo-checkout-item-price">
                         {(item.price * item.qty).toLocaleString()} VND
                       </span>
-                      <button className="zozo-checkout-item-remove" 
-                      onClick={() => handleRemoveItem(item.id)}
+                      <button className="zozo-checkout-item-remove"
+                        onClick={() => handleRemoveItem(item.id)}
                       >
                         <FaTrashAlt />
                       </button>
@@ -233,11 +232,11 @@ export default function CheckoutConfirm() {
                 <p>Tổng</p>
                 <p className="price">{finalTotal.toLocaleString()} VND</p>
               </div>
-                {discount > 0 && (
+              {discount > 0 && (
                 <p style={{ color: "#f6ff3e", fontSize: "14px", textAlign: "right" }}>
-                    Mã <strong>{discountCode}</strong> đã áp dụng: Giảm {discount.toLocaleString()} VND
+                  Mã <strong>{discountCode}</strong> đã áp dụng: Giảm {discount.toLocaleString()} VND
                 </p>
-                )}
+              )}
               {/* Thời gian còn lại */}
               {expiresAt && !expired && (
                 <div className="zozo-timer-box">
@@ -257,8 +256,8 @@ export default function CheckoutConfirm() {
                       selectedPayment === "zalopay"
                         ? "payment-selected"
                         : selectedPayment
-                        ? "payment-dim"
-                        : ""
+                          ? "payment-dim"
+                          : ""
                     }
                     onClick={() => handleSelectPayment("zalopay")}
                   />
@@ -269,8 +268,8 @@ export default function CheckoutConfirm() {
                       selectedPayment === "vnpay"
                         ? "payment-selected"
                         : selectedPayment
-                        ? "payment-dim"
-                        : ""
+                          ? "payment-dim"
+                          : ""
                     }
                     onClick={() => handleSelectPayment("vnpay")}
                   />
@@ -281,8 +280,8 @@ export default function CheckoutConfirm() {
                       selectedPayment === "momo"
                         ? "payment-selected"
                         : selectedPayment
-                        ? "payment-dim"
-                        : ""
+                          ? "payment-dim"
+                          : ""
                     }
                     onClick={() => handleSelectPayment("momo")}
                   />
@@ -291,9 +290,8 @@ export default function CheckoutConfirm() {
 
               {/* Nút thanh toán */}
               <button
-                className={`zozo-checkout-pay-btn ${
-                  selectedPayment ? "active" : "disabled"
-                }`}
+                className={`zozo-checkout-pay-btn ${selectedPayment ? "active" : "disabled"
+                  }`}
                 disabled={!selectedPayment}
                 onClick={handlePayment}
               >

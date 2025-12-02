@@ -4,8 +4,7 @@ import "./BookingDate.css";
 import { buildMonthMatrixUTC } from "../../components/calendar/calendar.js";
 import SiteHeader from "../../components/SiteHeader/SiteHeader.js";
 
-const API_BASE =
-  import.meta?.env?.VITE_API_URL || process.env.REACT_APP_API_URL || "";
+const API_BASE = process.env.REACT_APP_API_URL || "";
 
 export default function BookingDate() {
   const navigate = useNavigate();
@@ -172,16 +171,13 @@ export default function BookingDate() {
                         }}
                         title={
                           available
-                            ? `Còn vé: ${info?.remaining ?? "?"}/${
-                                info?.totalCapacity ?? "?"
-                              }`
+                            ? `Còn vé: ${info?.remaining ?? "?"}/${info?.totalCapacity ?? "?"
+                            }`
                             : "Hết vé / Không mở bán"
                         }
-                        aria-label={`Ngày ${dNum}/${
-                          cell.getUTCMonth() + 1
-                        }/${cell.getUTCFullYear()} - ${
-                          available ? "còn vé" : "hết vé"
-                        }`}
+                        aria-label={`Ngày ${dNum}/${cell.getUTCMonth() + 1
+                          }/${cell.getUTCFullYear()} - ${available ? "còn vé" : "hết vé"
+                          }`}
                       >
                         {dNum}
                       </button>

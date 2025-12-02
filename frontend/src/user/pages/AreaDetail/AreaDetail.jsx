@@ -14,10 +14,9 @@ export default function AreaDetail() {
   const [moreExhibits, setMoreExhibits] = useState([]);
   const [loadingMore, setLoadingMore] = useState(true);
 
-  const API_BASE = useMemo(
-    () => import.meta?.env?.VITE_API_URL || process.env.REACT_APP_API_URL || "",
-    []
-  );
+  const API_BASE = useMemo(() => {
+    return process.env.REACT_APP_API_URL || "";
+  }, []);
 
   // helpers
   const stripHtml = (html) =>
@@ -63,11 +62,11 @@ export default function AreaDetail() {
       .then((list) => {
         const filtered = Array.isArray(list)
           ? list.filter(
-              (ex) =>
-                ex?._id !== exhibit?._id &&
-                ex?.slug !== exhibit?.slug &&
-                ex?.isActive !== false
-            )
+            (ex) =>
+              ex?._id !== exhibit?._id &&
+              ex?.slug !== exhibit?.slug &&
+              ex?.isActive !== false
+          )
           : [];
         setMoreExhibits(filtered.slice(0, 4)); // lấy 4 khu
       })

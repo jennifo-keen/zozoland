@@ -7,13 +7,7 @@ export default function Register() {
   const navigate = useNavigate();
 
   // API base giống các trang khác
-  const API_BASE = useMemo(
-    () =>
-      import.meta?.env?.VITE_API_URL ||
-      process.env.REACT_APP_API_URL ||
-      "",
-    []
-  );
+  const API_BASE = process.env.REACT_APP_API_URL || "";
 
   const [form, setForm] = useState({
     fullName: "",
@@ -78,9 +72,9 @@ export default function Register() {
       if (!res.ok) {
         throw new Error(
           data?.message ||
-            (res.status === 409
-              ? "Username hoặc email đã tồn tại."
-              : "Đăng ký không thành công.")
+          (res.status === 409
+            ? "Username hoặc email đã tồn tại."
+            : "Đăng ký không thành công.")
         );
       }
 
@@ -102,9 +96,8 @@ export default function Register() {
 
           {serverMsg && (
             <div
-              className={`reg-alert ${
-                serverMsg.includes("thành công") ? "is-success" : "is-error"
-              }`}
+              className={`reg-alert ${serverMsg.includes("thành công") ? "is-success" : "is-error"
+                }`}
             >
               {serverMsg}
             </div>
@@ -194,9 +187,8 @@ export default function Register() {
                 onChange={onChange}
                 placeholder="••••••••"
                 autoComplete="new-password"
-                className={`reg-input ${
-                  errors.confirmPassword ? "has-error" : ""
-                }`}
+                className={`reg-input ${errors.confirmPassword ? "has-error" : ""
+                  }`}
               />
               {errors.confirmPassword && (
                 <small className="reg-error">{errors.confirmPassword}</small>

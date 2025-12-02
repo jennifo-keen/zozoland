@@ -8,13 +8,7 @@ export default function Login() {
   const { user, logout } = useUserAuth();
   const navigate = useNavigate();
 
-  const API_BASE = useMemo(
-    () =>
-      import.meta?.env?.VITE_API_URL ||
-      process.env.REACT_APP_API_URL ||
-      "",
-    []
-  );
+  const API_BASE = process.env.REACT_APP_API_URL || "";
 
   const [form, setForm] = useState({
     email: "",

@@ -4,8 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import "./BookingTickets.css";
 import SiteHeader from "../../components/SiteHeader/SiteHeader";
 
-const API_BASE =
-  import.meta?.env?.VITE_API_URL || process.env.REACT_APP_API_URL || "";
+const API_BASE = process.env.REACT_APP_API_URL || "";
 
 /** tiện ích lấy query param */
 function useQuery() {
@@ -162,23 +161,23 @@ export default function BookingTickets() {
       if (!res.ok)
         throw new Error(data?.error || "Không giữ chỗ được. Vui lòng thử lại.");
 
-       const extraData = JSON.stringify({
-      reservationId: data.reservationId,
-      visitDate: visitDate.toISOString(),
-      items: catalog
-        .filter(c => qty[c.code] > 0)
-        .map(c => ({
-          categoryCode: c.code,
-          quantity: qty[c.code],
-          unitPrice: c.basePrice,
-          finalUnitPrice: c.basePrice, // nếu có giảm giá thì tính ở đây
-        })),
-      pricing: {
-        baseSubtotal: total,
-        currency: "VND",
-        totalPayable: total,
-      },
-    });
+      const extraData = JSON.stringify({
+        reservationId: data.reservationId,
+        visitDate: visitDate.toISOString(),
+        items: catalog
+          .filter(c => qty[c.code] > 0)
+          .map(c => ({
+            categoryCode: c.code,
+            quantity: qty[c.code],
+            unitPrice: c.basePrice,
+            finalUnitPrice: c.basePrice, // nếu có giảm giá thì tính ở đây
+          })),
+        pricing: {
+          baseSubtotal: total,
+          currency: "VND",
+          totalPayable: total,
+        },
+      });
 
       // qua checkout
       navigate(`/checkout?rid=${data.reservationId}`);
@@ -191,11 +190,11 @@ export default function BookingTickets() {
 
   const displayDate = visitDate
     ? new Intl.DateTimeFormat("vi-VN", {
-        timeZone: "UTC",
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      }).format(visitDate)
+      timeZone: "UTC",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    }).format(visitDate)
     : "";
 
   return (
