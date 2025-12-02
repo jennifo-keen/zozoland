@@ -15,11 +15,12 @@ export default function ZooAreas() {
 
   const API_BASE = useMemo(
     () =>
-      import.meta?.env?.VITE_API_URL ||
       process.env.REACT_APP_API_URL ||
       "",
     []
   );
+
+  console.log(API_BASE)
 
   const stripHtml = (html) =>
     typeof html === "string" ? html.replace(/<[^>]*>/g, "").trim() : "";

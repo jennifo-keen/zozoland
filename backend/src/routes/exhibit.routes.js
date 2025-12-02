@@ -59,7 +59,7 @@ router.get("/:idOrSlug/animals", async (req, res) => {
         { exhibits: { $in: [ex._id] } },     
       ],
     };
-
+    
     const animals = await Animal.find(filter)
       .select(fields)
       .sort({ createdAt: -1 })
