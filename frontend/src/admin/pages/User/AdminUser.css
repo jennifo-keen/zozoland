@@ -1,0 +1,194 @@
+.adminuser-container {
+  padding: 24px;
+  background-color: #f9fafb;
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #000 !important;
+}
+
+.adminuser-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 24px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 10px;
+}
+
+.adminuser-loading, .adminuser-error {
+  padding: 40px;
+  text-align: center;
+  font-size: 18px;
+  color: #6b7280;
+}
+
+.adminuser-error {
+  color: #ef4444;
+}
+
+.adminuser-table-wrapper {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+}
+
+.adminuser-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  text-align: left;
+}
+
+.adminuser-thead {
+  background-color: #f3f4f6;
+  color: #000;
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+.adminuser-th, .adminuser-td {
+  padding: 12px 24px;
+  border-bottom: 1px solid #e5e7eb;
+  color: #000;
+}
+
+.adminuser-tr:hover {
+  background-color: #f9fafb;
+}
+
+.adminuser-status-active {
+  color: #059669;
+  font-weight: 600;
+  background-color: #d1fae5;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+}
+
+.adminuser-status-inactive {
+  color: #6b7280;
+  background-color: #f3f4f6;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+}
+
+.adminuser-status-banned {
+  color: #dc2626;
+  font-weight: 600;
+  background-color: #fee2e2;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  font-size: 12px;
+}
+
+/* --- Các nút bấm (Buttons) --- */
+.adminuser-btn-edit {
+  color: #2563eb;
+  font-weight: 500;
+  text-decoration: none;
+  margin-right: 12px;
+  transition: color 0.2s;
+}
+
+.adminuser-btn-edit:hover {
+  color: #1d4ed8;
+  text-decoration: underline;
+}
+
+.adminuser-btn-delete {
+  background: none;
+  border: none;
+  color: #ef4444;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.adminuser-btn-delete:hover {
+  color: #b91c1c;
+  text-decoration: underline;
+}
+
+/* --- Form Chỉnh Sửa (UserMod) --- */
+.adminuser-form-card {
+  max-width: 500px;
+  margin: 40px auto;
+  background-color: #ffffff;
+  padding: 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.adminuser-form-group {
+  margin-bottom: 20px;
+}
+
+.adminuser-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+  margin-bottom: 8px;
+}
+
+.adminuser-input, .adminuser-select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 16px;
+  color: #000;
+  box-sizing: border-box; /* Quan trọng để padding không làm vỡ layout */
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.adminuser-input:focus, .adminuser-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+}
+
+.adminuser-btn-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.adminuser-btn-save {
+  flex: 1;
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.adminuser-btn-save:hover {
+  background-color: #1d4ed8;
+}
+
+.adminuser-btn-cancel {
+  flex: 1;
+  background-color: #e5e7eb;
+  color: #1f2937;
+  text-decoration: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adminuser-btn-cancel:hover {
+  background-color: #d1d5db;
+}

@@ -26,18 +26,11 @@ export default function Header() {
         ],
       },
       {
-        parent: "Quản lý đơn hàng",
+        parent: "Quản lý",
         children: [
-          { name: "Danh sách đơn hàng", link: "/admin/orders/list" },
-          { name: "Báo cáo", link: "/admin/orders/report" },
-        ],
-      },
-      {
-        parent: "Quản lý người dùng",
-        children: [
-          { name: "Danh sách người dùng", link: "/admin/users/list" },
-          { name: "Người dùng mới", link: "/admin/users/add" },
-          { name: "Báo cáo", link: "/admin/users/report" },
+          { name: "Quản lý người dùng", link: "/admin/user/list" },
+          { name: "Quản lý Mã giảm giá", link: "/admin/discount" },
+          { name: "Quản lý vé", link: "/admin/ticket" },
         ],
       },
       {
@@ -50,15 +43,13 @@ export default function Header() {
       {
         parent: "Quản lý người dùng",
         children: [
-          { name: "Danh sách người dùng", link: "/admin/users/list" },
-          { name: "Người dùng mới", link: "/admin/users/add" },
+          { name: "Danh sách người dùng", link: "/admin/user/list" },
         ],
       },
       {
         parent: "Báo cáo & thống kê",
         children: [
-          { name: "Doanh thu", link: "/admin/report/revenue" },
-          { name: "Người dùng hoạt động", link: "/admin/report/active-users" },
+          { name: "Doanh thu", link: "/admin/report" },
         ],
       },
     ],
@@ -67,7 +58,7 @@ export default function Header() {
       {
         parent: "Người dùng",
         children: [
-          { name: "Danh sách người dùng", link: "/admin/users/list" },
+          { name: "Danh sách người dùng", link: "/admin/user/list" },
         ],
       },
     ],
@@ -104,7 +95,7 @@ export default function Header() {
         <div className="header-logo">
           <img
             style={{width: '100px', height: '100px'}}
-            onClick={() => navigate("/admin/dashboard")}
+            onClick={() => navigate("/admin")}
             src="/logo_white.svg"
             alt="ZozoLand Admin Logo"
           />
@@ -122,7 +113,6 @@ export default function Header() {
                   <img className={`chevron ${openNav === index ? "rotate" : ""}`} style={{height: '20px', width: '20px'}} src='/arrow.png' />
                 </button>
 
-                {/* Dropdown */}
                 {openNav === index && (
                   <ul className="dropdown-menu">
                     {item.children.map((child, childIndex) => (
@@ -142,7 +132,6 @@ export default function Header() {
           </ul>
         </nav>
 
-        {/* User Menu */}
         <div className="header-user" ref={userMenuRef}>
           <button
             className="user-button"

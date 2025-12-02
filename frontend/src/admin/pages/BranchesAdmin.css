@@ -1,6 +1,16 @@
-.branches-admin-wrap { max-width: 1100px; margin: 24px auto; padding: 16px; }
-.branches-create { background: #0f172a0d; padding: 16px; border-radius: 14px; margin-bottom: 20px; }
-.branches-create-form { display: grid; gap: 10px; grid-template-columns: 1fr; }
+.branches-admin-wrap { 
+    max-width: 1100px; 
+    margin: 24px auto; 
+    padding: 16px; }
+.branches-create { 
+    background: #0f172a0d; 
+    padding: 16px; 
+    border-radius: 14px; 
+    margin-bottom: 20px; }
+.branches-create-form { display: grid; 
+    gap: 10px; 
+    grid-template-columns: 1fr; 
+}
 .branches-input, .branches-textarea { width: 100%; padding: 10px 12px; border: 1px solid #e5e7eb; border-radius: 10px; }
 .branches-textarea { min-height: 80px; resize: vertical; }
 .branches-btn-primary, .branches-btn-secondary { border: 0; border-radius: 10px; padding: 10px 14px; cursor: pointer; }

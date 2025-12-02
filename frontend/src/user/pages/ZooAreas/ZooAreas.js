@@ -39,7 +39,6 @@ export default function ZooAreas() {
     return () => ac.abort();
   }, [API_BASE]);
 
-  // fetch exhibits
   useEffect(() => {
     const ac = new AbortController();
     setLoadingEx(true);
@@ -62,9 +61,9 @@ const handleBookingClick = (e) => {
   const token = localStorage.getItem("authToken");
   if (!token) {
     alert("Vui lòng đăng nhập để đặt vé!");
-    navigate("/login"); // chuyển hướng sang trang đăng nhập
+    navigate("/login"); 
   } else {
-    navigate("/bookingdate"); // nếu đã đăng nhập thì đi tiếp
+    navigate("/bookingdate"); 
   }
 };
   return (
@@ -80,7 +79,7 @@ const handleBookingClick = (e) => {
         </div>
       </section>
 
-      {/* BIG FEATURE CARD */}
+      {/* ảnh chính */}
       <section className="zlzone-feature">
         <div className="zlzone-feature__media" style={{ "--bird-image": `url(${birds})` }} />
         <div className="zlzone-feature__text">
@@ -93,7 +92,7 @@ const handleBookingClick = (e) => {
         </div>
       </section>
 
-      {/* ANIMAL SHELF – dữ liệu động */}
+      {/* Hiện các động vật ngẫu nhiên */}
       <section className="zlzone-shelf zlzone-shelf--panel zlzone-shelf--full">
         <div className="zlzone-shelf__head">
           <h3 className="zlzone-shelf__title">Gặp gỡ hơn 500 loài trong chuyến thăm tiếp theo của bạn</h3>
@@ -125,7 +124,7 @@ const handleBookingClick = (e) => {
         </div>
       </section>
 
-      {/* AREAS – lấy từ exhibits */}
+      {/* Hiện danh sách khu */}
       <section className="zlzone-areas">
         <h3 className="zlzone-areas__title">Khám phá các khu vực</h3>
 

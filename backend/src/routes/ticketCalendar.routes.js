@@ -83,7 +83,7 @@ router.get("/availability", async (req, res) => {
         date: new Date(doc.date).toISOString(),
         totalCapacity: doc.totalCapacity,
         soldCounts: doc.soldCounts || { total: soldTotal },
-        holding: h, // (tùy chọn: thêm vào response để debug)
+        holding: h,
         remaining,
         available: remaining > 0
         });

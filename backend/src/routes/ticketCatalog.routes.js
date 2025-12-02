@@ -1,5 +1,5 @@
 import express from "express";
-import { TicketCategory } from "../model/schemas/TicketCategory.js";   // bạn đã có schema này
+import { TicketCategory } from "../model/schemas/TicketCategory.js";  
 import { DailyTicketLimit } from "../model/schemas/DailyTicketLimit.js";
 import { Reservation } from "../model/schemas/Reservation.js";
 

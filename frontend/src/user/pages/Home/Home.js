@@ -1,6 +1,6 @@
 // Home.js
-import React, { useState,useEffect } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Home.css";
 
 export default function Home() {
@@ -10,7 +10,8 @@ export default function Home() {
   const [tickets, setTickets] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
-    useEffect(() => {
+
+  useEffect(() => {
     (async () => {
       try {
         const base = process.env.REACT_APP_API_URL || "";
@@ -18,7 +19,6 @@ export default function Home() {
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const data = await res.json();
 
-        // Kỳ vọng mỗi item có: { code, name, basePrice, currency, image?, features: string[] }
         const normalized = (Array.isArray(data) ? data : []).map((t) => ({
           ...t,
           code: normalizeCode(t.code),
@@ -34,82 +34,86 @@ export default function Home() {
     })();
   }, []);
 
-// format tiền
-function formatVND(n) {
-  try { return n.toLocaleString("vi-VN") + " VND"; }
-  catch { return `${n} VND`; }
-}
-// Chuẩn hóa code trả về từ API (ví dụ ADULT -> adult)
-function normalizeCode(code) {
-  return (code || "").toString().trim().toLowerCase();
-}
-function cardClassByCode(code) {
-  switch (normalizeCode(code)) {
-    case "adult": return "card--adult";
-    case "child": return "card--kid";
-    case "student": return "card--student";
-    default: return "";
+  function formatVND(n) {
+    try { return n.toLocaleString("vi-VN") + " VND"; }
+    catch { return `${n} VND`; }
   }
-}
-const handleBookingClick = (e) => {
-  e.preventDefault();
-  const token = localStorage.getItem("authToken");
-  if (!token) {
-    alert("Vui lòng đăng nhập để đặt vé!");
-    navigate("/login"); // chuyển hướng sang trang đăng nhập
-  } else {
-    navigate("/bookingdate"); // nếu đã đăng nhập thì đi tiếp
-  }
-};
-function getImageUrl(t) {
-  return t?.image || "/img/placeholder-ticket.jpg";
-}
-  return (
-    <div className="home">
 
-      {/* Hero */}
-      <section className="hero" id="visit" style={{ '--hero-image': `url(${heroUrl})` }}>
-        <div className="zoo-hero__birds" aria-hidden="true">
+  function normalizeCode(code) {
+    return (code || "").toString().trim().toLowerCase();
+  }
+
+  function cardClassByCode(code) {
+    switch (normalizeCode(code)) {
+      case "adult": return "zooHomeNew-card--adult";
+      case "child": return "zooHomeNew-card--kid";
+      case "student": return "zooHomeNew-card--student";
+      default: return "";
+    }
+  }
+
+  const handleBookingClick = (e) => {
+    e.preventDefault();
+    const token = localStorage.getItem("authToken");
+    if (!token) {
+      alert("Vui lòng đăng nhập để đặt vé!");
+      navigate("/login");
+    } else {
+      navigate("/bookingdate");
+    }
+  };
+
+  function getImageUrl(t) {
+    return t?.image || "/img/placeholder-ticket.jpg";
+  }
+
+  return (
+    <div className="zooHomeNew-home">
+
+      {/* ảnh chính */}
+      <section className="zooHomeNew-hero" id="visit" style={{ '--hero-image': `url(${heroUrl})` }}>
+        <div className="zooHomeNew-hero-birds" aria-hidden="true">
           <img
             src={process.env.PUBLIC_URL + "decor/birds.svg"}
             alt=""
-            className="zoo-hero__birds-img"
+            className="zooHomeNew-hero-birds-img"
           />
         </div>
-        <div className="container hero__content">
-          <h1 className="hero__title">NƠI THIÊN NHIÊN LÊN TIẾNG</h1>
-          <p className="hero__subtitle">
-            Khám phá – Trải nghiệm – Gắn kết
-          </p>
+        <div className="container zooHomeNew-hero-content">
+          <h1 className="zooHomeNew-hero-title">NƠI THIÊN NHIÊN LÊN TIẾNG</h1>
+          <p className="zooHomeNew-hero-subtitle">Khám phá – Trải nghiệm – Gắn kết</p>
 
-          <div className="zoo-home__cta-row">
-            <Link onClick={handleBookingClick} className="zoo-home__btn zoo-home__btn--primary">Đặt vé ngay </Link>
-            <Link to="/zooareas" className="zoo-home__btn zoo-home__btn--primary">Khám phá sở thú</Link>
+          <div className="zooHomeNew-cta-row">
+            <Link onClick={handleBookingClick} className="zooHomeNew-btn zooHomeNew-btn--primary">Đặt vé ngay</Link>
+            <Link to="/zooareas" className="zooHomeNew-btn zooHomeNew-btn--primary">Khám phá sở thú</Link>
           </div>
         </div>
       </section>
 
       {/* Video */}
-      <section className="video" aria-labelledby="videoTitle">
+      <section className="zooHomeNew-video" aria-labelledby="videoTitle">
         <div className="container">
-          <div className="video__frame" role="button" tabIndex="0"
-               onClick={() => setShowVideo(true)}
-               onKeyDown={(e) => (e.key === "Enter" ? setShowVideo(true) : null)}
-               aria-label="Phát video giới thiệu">
-            <button className="video__play" aria-hidden>
+          <div
+            className="zooHomeNew-video-frame"
+            role="button"
+            tabIndex="0"
+            onClick={() => setShowVideo(true)}
+            onKeyDown={(e) => (e.key === "Enter" ? setShowVideo(true) : null)}
+            aria-label="Phát video giới thiệu"
+          >
+            <button className="zooHomeNew-video-play" aria-hidden>
               <span>Play</span>
             </button>
           </div>
         </div>
 
-        {/* Simple modal video */}
         {showVideo && (
-          <div className="modal" role="dialog" aria-modal="true">
-            <div className="modal__backdrop" onClick={() => setShowVideo(false)} />
-            <div className="modal__body">
-              <button className="modal__close" onClick={() => setShowVideo(false)} aria-label="Đóng video">×</button>
+          <div className="zooHomeNew-modal" role="dialog" aria-modal="true">
+            <div className="zooHomeNew-modal-backdrop" onClick={() => setShowVideo(false)} />
+            <div className="zooHomeNew-modal-body">
+              <button className="zooHomeNew-modal-close" onClick={() => setShowVideo(false)} aria-label="Đóng video">×</button>
               <video
-                className="modal__video"
+                className="zooHomeNew-modal-video"
                 controls
                 autoPlay
                 src="https://res.cloudinary.com/dbifhgaic/video/upload/v1759763791/samples/elephants.mp4"
@@ -122,44 +126,43 @@ function getImageUrl(t) {
         )}
       </section>
 
-      {/* Pricing */}
-    <section className="pricing" id="book" aria-labelledby="pricingTitle">
+      {/* Vé */}
+      <section className="zooHomeNew-pricing" id="book" aria-labelledby="pricingTitle">
         <div className="container">
-          <h2 id="pricingTitle" className="section__title">
+          <h2 id="pricingTitle" className="zooHomeNew-section-title">
             Các hạng mục vé tham quan của chúng tôi
           </h2>
-          <p className="section__lead">
+          <p className="zooHomeNew-section-lead">
             Với hơn 30.000 động vật thuộc hơn 500 loài, mỗi chuyến tham quan đều góp vào quỹ bảo tồn.
           </p>
 
-          {loading && <div style={{color:"#cfe"}}>Đang tải vé…</div>}
-          {err && <div style={{color:"#ffb"}}>{err}</div>}
+          {loading && <div style={{ color: "#cfe" }}>Đang tải vé…</div>}
+          {err && <div style={{ color: "#ffb" }}>{err}</div>}
 
-          <div className="pricing__grid">
+          <div className="zooHomeNew-pricing-grid">
             {tickets.map((t) => (
-              <article key={t.code || t.name} className={`card ${cardClassByCode(t.code)}`}>
+              <article key={t.code || t.name} className={`zooHomeNew-card ${cardClassByCode(t.code)}`}>
                 <div
-                  className="card__media"
+                  className="zooHomeNew-card-media"
                   style={{
                     backgroundImage: `url(${getImageUrl(t)})`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                   }}
                 />
-                <div className="card__body">
+                <div className="zooHomeNew-card-body">
                   <h3>{t.name}</h3>
 
-                  {/* mô tả lấy trực tiếp từ DB */}
                   {t.features.length > 0 ? (
-                    <ul className="checklist">
+                    <ul className="zooHomeNew-checklist">
                       {t.features.map((d, i) => <li key={i}>{d}</li>)}
                     </ul>
                   ) : (
-                    <p className="muted">Nội dung đang cập nhật…</p>
+                    <p className="zooHomeNew-muted">Nội dung đang cập nhật…</p>
                   )}
 
-                  <div className="card__price">{formatVND(t.basePrice)}</div>
-                  <a className="btn-block" href="/bookingdate" >Đặt ngay</a>
+                  <div className="zooHomeNew-card-price">{formatVND(t.basePrice)}</div>
+                  <a className="zooHomeNew-btn-block" href="/bookingdate">Đặt ngay</a>
                 </div>
               </article>
             ))}
@@ -167,31 +170,29 @@ function getImageUrl(t) {
         </div>
       </section>
 
-      {/* CTA banner */}
-      <section className="cta">
+      {/* banner dưới cùng */}
+      <section className="zooHomeNew-cta">
         <div className="container">
-          <div className="cta__box">
+          <div className="zooHomeNew-cta-box">
             <img
               src={process.env.PUBLIC_URL + "/img/cute_ani.png"}
               alt="Động vật đáng yêu"
-              className="cta__img"
+              className="zooHomeNew-cta-img"
             />
-            <div className="cta__text">
+            <div className="zooHomeNew-cta-text">
               <h3>Tham quan các loài động vật đáng yêu</h3>
-              <Link onClick={handleBookingClick} className="btn btn-pill">Đặt vé ngay </Link>
+              <Link onClick={handleBookingClick} className="zooHomeNew-btn zooHomeNew-btn-pill">Đặt vé ngay</Link>
             </div>
           </div>
         </div>
       </section>
-      {/* nút đặt vé ngay */}
-      <div className="zoo-home__float-book" role="region" aria-label="Đặt lịch tham quan">
-        <div className="zoo-home__float-text">
+
+      {/* nút đặt vé flex */}
+      <div className="zooHomeNew-float-book" role="region" aria-label="Đặt lịch tham quan">
+        <div className="zooHomeNew-float-text">
           Đặt lịch tham quan ZozoLand ngay thôi !!!
         </div>
-        <Link
-          onClick={handleBookingClick}
-          className="zoo-home__btn-mini"
-        >
+        <Link onClick={handleBookingClick} className="zooHomeNew-btn-mini">
           Đặt vé ngay
         </Link>
       </div>

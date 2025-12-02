@@ -6,7 +6,7 @@ import bcrypt from "bcryptjs"
 
 const router = express.Router();
 
-// GET /api/users/:id → lấy thông tin người dùng
+// GET /api/users/:id lấy thông tin người dùng
 router.get("/:id", async (req, res) => {
   try {
     const user = await User.findById(req.params.id).select("-passwordHash");
@@ -18,7 +18,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-// PUT /api/users/:id → cập nhật thông tin người dùng
+// PUT /api/users/:id cập nhật thông tin người dùng
 router.put("/:id", async (req, res) => {
   try {
     const { fullName, email, phone, dob, address } = req.body;
@@ -36,7 +36,7 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-// DELETE /api/users/:id → xóa tài khoản
+// DELETE /api/users/:id xóa tài khoản
 router.delete("/:id", async (req, res) => {
   try {
     const deleted = await User.findByIdAndDelete(req.params.id);
@@ -67,7 +67,7 @@ router.get("/:id/orders/:orderId/tickets", async (req, res) => {
   }
 });
 
-// PUT /api/users/:id/changepassword → đổi mật khẩu
+// PUT /api/users/:id/changepassword đổi mật khẩu
 router.put("/:id/changepassword", async (req, res) => {
   try {
     const { currentPassword, newPassword, confirmPassword } = req.body;
